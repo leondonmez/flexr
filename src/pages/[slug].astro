@@ -1,0 +1,45 @@
+---
+// Programmatic SEO pages: one static route per entry in seoLayouts.json,
+// generated at build time. Each page ships unique metadata, a crawlable
+// copy block, and a JSON state island that pre-configures the laboratory.
+import Layout from '../layouts/Layout.astro';
+import FlexrApp from '../components/FlexrApp.astro';
+import RelatedLayouts from '../components/RelatedLayouts.astro';
+import layouts from '../data/seoLayouts.json';
+
+export function getStaticPaths() {
+  return layouts.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+---
+
+<Layout
+  title={entry.title}
+  description={entry.metaDescription}
+  canonical={`https://flexr.dev/${entry.slug}`}
+>
+  <section class="mx-auto w-full max-w-7xl px-4 pt-8 pb-1 lg:px-6">
+    <p class="mb-2 text-[11px] font-semibold tracking-widest text-indigo-400 uppercase">
+      Layout Recipe
+    </p>
+    <h1 class="text-2xl font-light tracking-tight text-zinc-100 sm:text-3xl">
+      {entry.h1}
+    </h1>
+    <p class="mt-2.5 max-w-3xl text-sm leading-relaxed font-light text-zinc-400">
+      {entry.explanationText}
+    </p>
+    <p class="mt-2 text-xs text-zinc-600">
+      The playground below is pre-configured with this exact layout — tweak any control to
+      explore, then copy the Tailwind or vanilla CSS from the exporter.
+    </p>
+  </section>
+
+  <script type="application/json" id="flexr-initial-state" set:html={JSON.stringify(entry.initialState)} />
+
+  <FlexrApp />
+  <RelatedLayouts currentSlug={entry.slug} />
+</Layout>

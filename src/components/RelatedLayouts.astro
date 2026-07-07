@@ -1,0 +1,33 @@
+---
+// Internal-link block for the pSEO network: every layout guide links to
+// every other one (and the home page links to all of them), so no
+// programmatic page is ever an orphan for crawlers.
+import layouts from '../data/seoLayouts.json';
+
+interface Props {
+  currentSlug?: string | null;
+}
+
+const { currentSlug = null } = Astro.props;
+const links = layouts.filter((entry) => entry.slug !== currentSlug);
+---
+
+<section class="mx-auto w-full max-w-7xl px-4 pb-10 lg:px-6">
+  <h2 class="mb-3 text-[11px] font-semibold tracking-widest text-zinc-500 uppercase">
+    Popular Layout Guides
+  </h2>
+  <ul class="grid gap-x-6 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      links.map((entry) => (
+        <li>
+          <a
+            href={`/${entry.slug}`}
+            class="text-xs leading-relaxed text-zinc-500 transition-colors hover:text-indigo-300"
+          >
+            {entry.h1}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>

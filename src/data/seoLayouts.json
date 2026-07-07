@@ -1,0 +1,248 @@
+[
+  {
+    "slug": "how-to-center-div-tailwind",
+    "title": "How to Center a Div in Tailwind CSS | Flexr Layout Lab",
+    "h1": "Center a Div Instantly with Tailwind Flexbox",
+    "metaDescription": "Learn how to perfectly center a div vertically and horizontally using Tailwind CSS flexbox utility classes. Adjust parameters in real-time.",
+    "initialState": {
+      "mode": "flex",
+      "direction": "flex-row",
+      "justify": "justify-center",
+      "align": "items-center",
+      "wrap": "flex-nowrap",
+      "gap": "gap-4",
+      "childrenCount": 3
+    },
+    "explanationText": "To center an element perfectly inside a parent container using Tailwind CSS, combine 'flex' with 'justify-center' (horizontal alignment) and 'items-center' (vertical alignment). Ensure the parent container has a defined height (like 'h-screen' or 'min-h-full') so vertical centering is visible."
+  },
+  {
+    "slug": "space-between-navbar-tailwind",
+    "title": "Space-Between Navbar Layout in Tailwind CSS | Flexr Layout Lab",
+    "h1": "Build a Space-Between Navbar with Tailwind Flexbox",
+    "metaDescription": "Push your logo left and menu right with Tailwind's justify-between. Preview the classic navbar split live and copy the exact utility classes.",
+    "initialState": {
+      "mode": "flex",
+      "direction": "flex-row",
+      "justify": "justify-between",
+      "align": "items-center",
+      "wrap": "flex-nowrap",
+      "gap": "gap-4",
+      "childrenCount": 3
+    },
+    "explanationText": "The classic navbar split uses 'flex justify-between items-center' on the header container. 'justify-between' pushes the first child (your logo) to the far left and the last child (your menu or CTA button) to the far right, distributing any remaining children evenly between them, while 'items-center' keeps everything vertically aligned on one line."
+  },
+  {
+    "slug": "tailwind-sticky-footer-layout",
+    "title": "Sticky Footer Layout in Tailwind CSS | Flexr Layout Lab",
+    "h1": "Pin a Footer to the Bottom with Tailwind Flexbox",
+    "metaDescription": "Stop footers from floating mid-page. Use flex-col with justify-between in Tailwind CSS to pin footers to the viewport bottom on short pages.",
+    "initialState": {
+      "mode": "flex",
+      "direction": "flex-col",
+      "justify": "justify-between",
+      "align": "items-stretch",
+      "wrap": "flex-nowrap",
+      "gap": "gap-4",
+      "childrenCount": 3
+    },
+    "explanationText": "A sticky footer keeps your footer pinned to the bottom of the viewport even when page content is short. Apply 'flex flex-col justify-between min-h-screen' to your page wrapper: the column direction stacks header, main, and footer vertically, and 'justify-between' pushes the first child to the top and the last child to the bottom. Alternatively, put 'flex-1' on the main content area to make it absorb all spare space."
+  },
+  {
+    "slug": "tailwind-equal-height-cards",
+    "title": "Equal Height Cards with Tailwind CSS Flexbox | Flexr Layout Lab",
+    "h1": "Make Cards Equal Height with Tailwind Flexbox",
+    "metaDescription": "Force sibling cards to match the tallest card's height using Tailwind's items-stretch. See the stretch behavior live and copy the classes.",
+    "initialState": {
+      "mode": "flex",
+      "direction": "flex-row",
+      "justify": "justify-start",
+      "align": "items-stretch",
+      "wrap": "flex-nowrap",
+      "gap": "gap-6",
+      "childrenCount": 3
+    },
+    "explanationText": "Equal-height cards are flexbox's default behavior, and Tailwind exposes it through 'items-stretch' (which is applied automatically when you use 'flex'). Every direct child stretches on the cross axis to match the tallest sibling in its row — no JavaScript height matching, no fixed heights. If your cards stopped matching heights, check whether an 'items-start' or 'items-center' utility crept onto the parent."
+  },
+  {
+    "slug": "vertical-stack-tailwind-flex-col",
+    "title": "Vertical Stack Layout with flex-col in Tailwind CSS | Flexr Layout Lab",
+    "h1": "Stack Elements Vertically with Tailwind flex-col",
+    "metaDescription": "Stack children top-to-bottom with consistent spacing using Tailwind's flex-col and gap utilities. Preview the vertical rhythm live.",
+    "initialState": {
+      "mode": "flex",
+      "direction": "flex-col",
+      "justify": "justify-start",
+      "align": "items-stretch",
+      "wrap": "flex-nowrap",
+      "gap": "gap-4",
+      "childrenCount": 4
+    },
+    "explanationText": "'flex flex-col' rotates the main axis so children stack top-to-bottom, and 'gap-4' inserts identical spacing between every child without the margin-collapsing headaches of 'space-y-*' or manual margins. This is the cleanest pattern for form fields, settings lists, and any single-column mobile layout. Remember that in column mode, 'justify-*' now controls vertical distribution and 'items-*' controls horizontal alignment."
+  },
+  {
+    "slug": "tailwind-grid-3-columns",
+    "title": "3 Column Grid Layout in Tailwind CSS | Flexr Layout Lab",
+    "h1": "Build a 3-Column Grid with Tailwind CSS",
+    "metaDescription": "Create a clean three-column grid with grid-cols-3 and gap utilities in Tailwind CSS. Adjust columns, rows, and gutters visually.",
+    "initialState": {
+      "mode": "grid",
+      "direction": "flex-row",
+      "justify": "justify-start",
+      "align": "items-stretch",
+      "wrap": "flex-nowrap",
+      "gap": "gap-6",
+      "cols": "grid-cols-3",
+      "rows": "grid-rows-2",
+      "childrenCount": 6
+    },
+    "explanationText": "'grid grid-cols-3 gap-6' creates three equal-width columns ('repeat(3, minmax(0, 1fr))' under the hood) with consistent gutters in both directions. Children flow into cells automatically, left to right, wrapping to a new row every three items — no manual row management needed. The 'minmax(0, 1fr)' Tailwind generates is important: it lets long content shrink instead of blowing out the column width."
+  },
+  {
+    "slug": "tailwind-right-align-button",
+    "title": "Right Align a Button with Tailwind CSS Flexbox | Flexr Layout Lab",
+    "h1": "Right-Align Buttons with Tailwind justify-end",
+    "metaDescription": "Push buttons to the right edge of a container using Tailwind's justify-end — the modern replacement for float: right. Preview it live.",
+    "initialState": {
+      "mode": "flex",
+      "direction": "flex-row",
+      "justify": "justify-end",
+      "align": "items-center",
+      "wrap": "flex-nowrap",
+      "gap": "gap-4",
+      "childrenCount": 2
+    },
+    "explanationText": "Wrap the button in a 'flex justify-end' container to push it (and any siblings) to the right edge — the modern replacement for 'float: right'. This is the standard pattern for dialog action rows and form submit areas. Need one element left and the button right instead? Switch to 'justify-between', or keep 'justify-end' and add 'mr-auto' to the element that should stay on the left."
+  },
+  {
+    "slug": "center-image-flexbox-tailwind",
+    "title": "Center an Image with Flexbox in Tailwind CSS | Flexr Layout Lab",
+    "h1": "Center an Image with Tailwind Flexbox",
+    "metaDescription": "Center images horizontally and vertically inside any container with Tailwind's flex, justify-center, and items-center utilities.",
+    "initialState": {
+      "mode": "flex",
+      "direction": "flex-row",
+      "justify": "justify-center",
+      "align": "items-center",
+      "wrap": "flex-nowrap",
+      "gap": "gap-4",
+      "childrenCount": 1
+    },
+    "explanationText": "Images are inline elements, so classic centering tricks often fail. The reliable fix: put 'flex justify-center items-center' on the image's parent container, and the image centers both ways regardless of its dimensions. This works for logos in cards, avatars in list rows, and hero illustrations. If you only need horizontal centering, 'flex justify-center' alone does it — or use 'mx-auto' on the image itself with 'block'."
+  },
+  {
+    "slug": "tailwind-responsive-card-wrap",
+    "title": "Responsive Wrapping Cards with Tailwind flex-wrap | Flexr Layout Lab",
+    "h1": "Build Responsive Wrapping Cards with Tailwind flex-wrap",
+    "metaDescription": "Let cards reflow onto new lines on small screens with Tailwind's flex-wrap and gap utilities. Resize the preview to test the breakpoints.",
+    "initialState": {
+      "mode": "flex",
+      "direction": "flex-row",
+      "justify": "justify-start",
+      "align": "items-stretch",
+      "wrap": "flex-wrap",
+      "gap": "gap-6",
+      "childrenCount": 6
+    },
+    "explanationText": "'flex flex-wrap gap-6' gives you a card row that gracefully reflows: when the container runs out of horizontal room, overflowing cards wrap onto a new line while keeping identical gutters in both directions. Unlike a rigid grid, each row packs as many cards as fit. Give each card a flex-basis (like 'basis-64') to control the wrap point, and the layout adapts to any screen width with zero media queries."
+  },
+  {
+    "slug": "tailwind-2-column-layout",
+    "title": "Two Column Layout in Tailwind CSS | Flexr Layout Lab",
+    "h1": "Create a Two-Column Layout with Tailwind Grid",
+    "metaDescription": "Split content into two equal columns with Tailwind's grid-cols-2 — perfect for text/image splits and settings pages. Preview and copy the code.",
+    "initialState": {
+      "mode": "grid",
+      "direction": "flex-row",
+      "justify": "justify-start",
+      "align": "items-stretch",
+      "wrap": "flex-nowrap",
+      "gap": "gap-8",
+      "cols": "grid-cols-2",
+      "rows": "grid-rows-1",
+      "childrenCount": 2
+    },
+    "explanationText": "'grid grid-cols-2 gap-8' is the fastest route to a balanced two-column split for text/image sections, comparison panels, or settings pages. Both columns get exactly half the available width regardless of their content, which flexbox does not guarantee without extra 'basis' utilities. To stack the columns on mobile, prefix the column count with a breakpoint: 'grid-cols-1 md:grid-cols-2'."
+  },
+  {
+    "slug": "tailwind-image-gallery-grid",
+    "title": "Image Gallery Grid in Tailwind CSS | Flexr Layout Lab",
+    "h1": "Build an Image Gallery Grid with Tailwind CSS",
+    "metaDescription": "Lay out a photo gallery with grid-cols-4 and tight gaps in Tailwind CSS. Tune columns, rows, and gutters visually, then copy the classes.",
+    "initialState": {
+      "mode": "grid",
+      "direction": "flex-row",
+      "justify": "justify-start",
+      "align": "items-stretch",
+      "wrap": "flex-nowrap",
+      "gap": "gap-4",
+      "cols": "grid-cols-4",
+      "rows": "grid-rows-2",
+      "childrenCount": 8
+    },
+    "explanationText": "A gallery wants uniform cells and tight, even gutters — exactly what 'grid grid-cols-4 gap-4' produces. Images flow into equal-width cells automatically, and adding 'aspect-square object-cover' to each image keeps every thumbnail cropped to the same shape. Scale the column count down at smaller breakpoints ('grid-cols-2 md:grid-cols-4') so thumbnails never get too small to tap."
+  },
+  {
+    "slug": "tailwind-evenly-spaced-links",
+    "title": "Evenly Spaced Links with justify-evenly in Tailwind | Flexr Layout Lab",
+    "h1": "Space Links Evenly with Tailwind justify-evenly",
+    "metaDescription": "Distribute footer links or icon rows with perfectly equal spacing using Tailwind's justify-evenly. Compare it live against between and around.",
+    "initialState": {
+      "mode": "flex",
+      "direction": "flex-row",
+      "justify": "justify-evenly",
+      "align": "items-center",
+      "wrap": "flex-nowrap",
+      "gap": "gap-4",
+      "childrenCount": 4
+    },
+    "explanationText": "'justify-evenly' distributes children so the space before, between, and after every item is identical — visually calmer than 'justify-between' (which pins the outer items to the edges) and more balanced than 'justify-around' (which halves the outer spacing). It is the right pick for footer link rows, social icon strips, and bottom tab bars. Toggle between the three in the playground above to see the difference instantly."
+  },
+  {
+    "slug": "tailwind-baseline-align-text",
+    "title": "Baseline Align Mixed Text Sizes in Tailwind CSS | Flexr Layout Lab",
+    "h1": "Align Mixed-Size Text on One Baseline with Tailwind",
+    "metaDescription": "Sit a big stat and its small label on the same text baseline with Tailwind's items-baseline — the fix for wobbly pricing and metric rows.",
+    "initialState": {
+      "mode": "flex",
+      "direction": "flex-row",
+      "justify": "justify-start",
+      "align": "items-baseline",
+      "wrap": "flex-nowrap",
+      "gap": "gap-4",
+      "childrenCount": 3
+    },
+    "explanationText": "When a row mixes font sizes — a large price next to '/month', or a big metric next to its unit — 'items-center' makes the text look misaligned because it centers boxes, not letters. 'items-baseline' aligns children on their text baselines instead, so every character sits on the same invisible line the way typography intends. This is the single most-missed utility in pricing tables and stat rows."
+  },
+  {
+    "slug": "tailwind-vertical-align-center",
+    "title": "Vertically Center Content in Tailwind CSS | Flexr Layout Lab",
+    "h1": "Vertically Center Anything with Tailwind items-center",
+    "metaDescription": "Vertically center icons, text, and badges inside a row with Tailwind's items-center — the flexbox answer to vertical-align. Try it live.",
+    "initialState": {
+      "mode": "flex",
+      "direction": "flex-row",
+      "justify": "justify-start",
+      "align": "items-center",
+      "wrap": "flex-nowrap",
+      "gap": "gap-4",
+      "childrenCount": 3
+    },
+    "explanationText": "The old 'vertical-align' property never worked the way anyone expected. In flexbox, vertical centering inside a row is one utility: 'items-center' on the parent aligns every child to the vertical middle of the tallest item. This is the fix for icons that sit too high next to text, badges that hug the top of a list row, and avatars that refuse to line up with usernames. Children keep their natural left-packed order because 'justify-start' stays untouched."
+  },
+  {
+    "slug": "tailwind-reverse-column-chat-layout",
+    "title": "Reverse Column Order with flex-col-reverse in Tailwind | Flexr Layout Lab",
+    "h1": "Reverse Stacking Order with Tailwind flex-col-reverse",
+    "metaDescription": "Render newest content at the bottom like a chat feed using Tailwind's flex-col-reverse. Watch the visual order flip without touching the DOM.",
+    "initialState": {
+      "mode": "flex",
+      "direction": "flex-col-reverse",
+      "justify": "justify-start",
+      "align": "items-stretch",
+      "wrap": "flex-nowrap",
+      "gap": "gap-4",
+      "childrenCount": 4
+    },
+    "explanationText": "'flex-col-reverse' stacks children bottom-to-top: the first element in your DOM renders at the bottom of the container. Chat threads and activity feeds use this so the newest message stays visually anchored at the bottom while you append to the end of the list — and as a bonus, the browser keeps the scroll position pinned there. Note that only the visual order flips; screen readers and tab order still follow the DOM."
+  }
+]

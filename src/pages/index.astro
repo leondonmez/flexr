@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FlexrApp from '../components/FlexrApp.astro';
+import RelatedLayouts from '../components/RelatedLayouts.astro';
+---
+
+<Layout canonical="https://flexr.dev/">
+  <section class="mx-auto w-full max-w-7xl px-4 pt-8 pb-1 lg:px-6">
+    <h1 class="text-2xl font-light tracking-tight text-zinc-100 sm:text-3xl">
+      Stop guessing your <span class="font-normal text-indigo-300">Tailwind layouts</span>.
+    </h1>
+    <p class="mt-2.5 max-w-3xl text-sm leading-relaxed font-light text-zinc-400">
+      AI code assistants often hallucinate or break CSS layouts. Flexr is a zero-cost, client-side
+      visual playground built to let you visually test alignment, spacing, and mobile behavior
+      before pasting code back into your prompts.
+    </p>
+  </section>
+
+  <FlexrApp />
+  <RelatedLayouts />
+</Layout>

@@ -1,0 +1,40 @@
+---
+// Real-time code output. Tab contents, highlighting, clipboard, and the
+// sandbox export are driven by src/scripts/flexr.js.
+---
+
+<section class="flex min-w-0 flex-col rounded-2xl border border-zinc-800/80 bg-zinc-900/40 backdrop-blur">
+  <div class="flex flex-wrap items-center justify-between gap-3 border-b border-zinc-800/70 px-5 py-3">
+    <div class="flex items-center gap-1 rounded-lg border border-zinc-800 bg-zinc-950/60 p-1" role="tablist">
+      <button type="button" data-tab="tailwind" role="tab">Tailwind CSS</button>
+      <button type="button" data-tab="vanilla" role="tab">Vanilla CSS</button>
+    </div>
+    <div class="flex items-center gap-2">
+      <button
+        type="button"
+        id="copy-btn"
+        class="flex items-center gap-1.5 rounded-lg border border-zinc-700 bg-zinc-900/80 px-3 py-1.5 text-xs font-semibold text-zinc-200 transition-all duration-150 hover:border-zinc-500"
+      >
+        <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <span id="copy-label">Copy Code</span>
+      </button>
+      <button
+        type="button"
+        id="sandbox-btn"
+        title="Open this layout in a live Tailwind Play CDN sandbox tab (generated locally — nothing is uploaded)"
+        class="flex items-center gap-1.5 rounded-lg border border-indigo-500/40 bg-indigo-500/10 px-3 py-1.5 text-xs font-semibold text-indigo-300 transition-all duration-150 hover:border-indigo-400 hover:bg-indigo-500/20"
+      >
+        Open in Sandbox
+        <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <pre class="overflow-x-auto p-5 text-[13px] leading-relaxed text-zinc-300"><code id="code-block" class="font-mono"></code></pre>
+</section>

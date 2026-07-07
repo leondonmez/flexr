@@ -1,0 +1,39 @@
+---
+// The live canvas. #canvas children and all layout classes are managed by
+// src/scripts/flexr.js; #guides-overlay renders dotted grid tracks when
+// "Show Layout Guides" is on in Grid mode (flex guides are CSS-only).
+---
+
+<section class="flex min-w-0 flex-col gap-3 rounded-2xl border border-zinc-800/80 bg-zinc-900/40 p-5 backdrop-blur">
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <div class="flex min-w-0 items-center gap-3">
+      <h2 class="text-sm font-semibold text-zinc-200">Live Preview</h2>
+      <code
+        id="canvas-classes"
+        class="hidden truncate rounded-md border border-zinc-800 bg-zinc-950/70 px-2 py-1 font-mono text-[11px] text-zinc-400 md:block"
+      ></code>
+    </div>
+    <label class="flex cursor-pointer items-center gap-2 text-xs text-zinc-400">
+      Show Layout Guides
+      <button type="button" id="guides-toggle" role="switch" aria-pressed="false" aria-label="Show layout guides">
+        <span id="guides-knob"></span>
+      </button>
+    </label>
+  </div>
+
+  <p class="flex items-start gap-2 rounded-lg border border-zinc-800/70 bg-zinc-950/50 px-3 py-2 text-xs leading-relaxed text-zinc-400">
+    <span aria-hidden="true">&#128161;</span>
+    <span
+      ><strong class="font-semibold text-zinc-200">Current Layout:</strong>
+      <span id="layout-translation"></span></span
+    >
+  </p>
+
+  <div
+    id="canvas-wrap"
+    class="relative overflow-auto rounded-xl border border-zinc-800 bg-zinc-950/70 p-5 [background-image:radial-gradient(rgb(63_63_70/0.35)_1px,transparent_1px)] [background-size:20px_20px]"
+  >
+    <div id="guides-overlay" class="hidden"></div>
+    <div id="canvas" class="relative min-h-96 w-full" role="group" aria-label="Interactive layout preview"></div>
+  </div>
+</section>

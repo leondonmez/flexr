@@ -1,0 +1,135 @@
+---
+// Static shells only — the segmented option buttons inside each
+// [data-options] container are populated by src/scripts/flexr.js from the
+// purge-safe class dictionaries, so labels and values live in one place.
+---
+
+<aside class="flex flex-col gap-6 self-start rounded-2xl border border-zinc-800/80 bg-zinc-900/40 p-5 backdrop-blur lg:sticky lg:top-20">
+  <!-- Quick Layout Recipes — buttons populated from PRESETS in flexr.js -->
+  <section class="flex flex-col gap-2.5">
+    <h2 class="text-[11px] font-semibold tracking-widest text-zinc-500 uppercase">
+      I want to&hellip; <span class="font-normal normal-case tracking-normal text-zinc-600">(Quick Layout Recipes)</span>
+    </h2>
+    <div id="recipes" class="flex flex-col gap-1.5"></div>
+  </section>
+
+  <!-- Layout mode -->
+  <section class="flex flex-col gap-2.5 border-t border-zinc-800/70 pt-5">
+    <h2 class="text-[11px] font-semibold tracking-widest text-zinc-500 uppercase">Layout Mode</h2>
+    <div class="grid grid-cols-2 gap-1 rounded-xl border border-zinc-800 bg-zinc-950/60 p-1">
+      <button type="button" data-mode="flex">Flexbox</button>
+      <button type="button" data-mode="grid">Grid</button>
+    </div>
+  </section>
+
+  <!-- Flexbox parent controls -->
+  <section data-section="flex" class="flex flex-col gap-5">
+    <div class="flex flex-col gap-2">
+      <h3 class="text-[11px] font-semibold tracking-widest text-zinc-500 uppercase">Direction</h3>
+      <div class="grid grid-cols-2 gap-1.5" data-options="direction"></div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h3 class="text-[11px] font-semibold tracking-widest text-zinc-500 uppercase">Justify Content</h3>
+      <div class="grid grid-cols-3 gap-1.5" data-options="justify"></div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h3 class="text-[11px] font-semibold tracking-widest text-zinc-500 uppercase">Align Items</h3>
+      <div class="grid grid-cols-3 gap-1.5" data-options="align"></div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h3 class="text-[11px] font-semibold tracking-widest text-zinc-500 uppercase">Flex Wrap</h3>
+      <div class="grid grid-cols-3 gap-1.5" data-options="wrap"></div>
+    </div>
+  </section>
+
+  <!-- Grid parent controls (shown only in Grid mode) -->
+  <section data-section="grid" class="flex flex-col gap-5" style="display: none">
+    <div class="flex flex-col gap-2">
+      <h3 class="text-[11px] font-semibold tracking-widest text-zinc-500 uppercase">Columns</h3>
+      <div class="grid grid-cols-6 gap-1.5" data-options="gridCols"></div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h3 class="text-[11px] font-semibold tracking-widest text-zinc-500 uppercase">Rows</h3>
+      <div class="grid grid-cols-4 gap-1.5" data-options="gridRows"></div>
+    </div>
+  </section>
+
+  <!-- Gap (applies to both modes) -->
+  <section class="flex flex-col gap-2.5">
+    <div class="flex items-baseline justify-between">
+      <h3 class="text-[11px] font-semibold tracking-widest text-zinc-500 uppercase">Gap Scale</h3>
+      <span id="gap-value" class="font-mono text-[11px] text-indigo-300">gap-4 · 1rem</span>
+    </div>
+    <input id="gap-slider" type="range" min="0" max="9" step="1" value="4" aria-label="Gap scale" />
+  </section>
+
+  <!-- Child nodes manager -->
+  <section class="flex flex-col gap-2.5 border-t border-zinc-800/70 pt-5">
+    <div class="flex items-center justify-between">
+      <h3 class="text-[11px] font-semibold tracking-widest text-zinc-500 uppercase">Child Nodes</h3>
+      <div class="flex items-center gap-1.5">
+        <button
+          type="button"
+          id="items-dec"
+          aria-label="Remove child node"
+          class="grid h-7 w-7 place-items-center rounded-lg border border-zinc-800 bg-zinc-900/60 text-sm text-zinc-400 transition-all duration-150 hover:border-zinc-600 hover:text-zinc-100"
+          >&minus;</button
+        >
+        <span id="items-count" class="w-7 text-center font-mono text-sm text-zinc-200">3</span>
+        <button
+          type="button"
+          id="items-inc"
+          aria-label="Add child node"
+          class="grid h-7 w-7 place-items-center rounded-lg border border-zinc-800 bg-zinc-900/60 text-sm text-zinc-400 transition-all duration-150 hover:border-zinc-600 hover:text-zinc-100"
+          >+</button
+        >
+      </div>
+    </div>
+    <div id="item-chips" class="flex flex-wrap gap-1.5"></div>
+    <p class="text-[11px] leading-relaxed text-zinc-600">
+      Click a chip (or an item on the canvas) to edit its individual overrides.
+    </p>
+  </section>
+
+  <!-- Individual item override panel -->
+  <section
+    id="override-panel"
+    class="flex flex-col gap-4 rounded-xl border border-indigo-500/30 bg-indigo-500/5 p-4"
+    style="display: none"
+  >
+    <div class="flex items-center justify-between">
+      <h3 id="override-title" class="text-sm font-semibold text-indigo-200">Item 1 overrides</h3>
+      <button
+        type="button"
+        id="override-close"
+        aria-label="Close override panel"
+        class="grid h-6 w-6 place-items-center rounded-md text-zinc-500 transition-colors hover:bg-zinc-800 hover:text-zinc-200"
+        >&#10005;</button
+      >
+    </div>
+    <div id="flex-only-controls" class="grid grid-cols-2 gap-1.5">
+      <button type="button" id="grow-toggle">
+        <span class="font-mono">grow</span>
+        <span id="grow-state" class="font-mono opacity-70">off</span>
+      </button>
+      <button type="button" id="shrink-toggle">
+        <span class="font-mono">shrink</span>
+        <span id="shrink-state" class="font-mono opacity-70">on</span>
+      </button>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h4 class="text-[11px] font-semibold tracking-widest text-zinc-500 uppercase">Align Self</h4>
+      <div class="grid grid-cols-3 gap-1.5" data-options="alignSelf"></div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h4 class="text-[11px] font-semibold tracking-widest text-zinc-500 uppercase">Order</h4>
+      <div class="grid grid-cols-3 gap-1.5" data-options="order"></div>
+    </div>
+    <button
+      type="button"
+      id="item-reset"
+      class="rounded-lg border border-zinc-800 bg-zinc-900/60 px-3 py-1.5 text-xs font-medium text-zinc-400 transition-all duration-150 hover:border-rose-500/50 hover:text-rose-300"
+      >Reset item</button
+    >
+  </section>
+</aside>

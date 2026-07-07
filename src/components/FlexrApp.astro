@@ -1,0 +1,23 @@
+---
+// The complete interactive laboratory — control panel, live canvas, and
+// code exporter. Shared by the home page and every pSEO page so the tool
+// (and its init script) exists exactly once. Pages that need a preset
+// layout embed a #flexr-initial-state JSON island before this component;
+// initFlexr() picks it up automatically.
+import ControlPanel from './ControlPanel.astro';
+import PreviewCanvas from './PreviewCanvas.astro';
+import CodeExporter from './CodeExporter.astro';
+---
+
+<div class="mx-auto grid w-full max-w-7xl gap-6 px-4 py-6 lg:grid-cols-[340px_minmax(0,1fr)] lg:px-6">
+  <ControlPanel />
+  <div class="flex min-w-0 flex-col gap-6">
+    <PreviewCanvas />
+    <CodeExporter />
+  </div>
+</div>
+
+<script>
+  import { initFlexr } from '../scripts/flexr.js';
+  initFlexr();
+</script>
