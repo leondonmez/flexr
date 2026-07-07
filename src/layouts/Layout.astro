@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import NetworkFooter from '../components/NetworkFooter.astro';
 
 interface Props {
   title?: string;
@@ -15,13 +16,6 @@ const {
   // from the configured site URL so no page ships without the tag.
   canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://flexr.dev').href,
 } = Astro.props;
-
-const network = [
-  { name: 'Vibsio', href: 'https://vibs.io', hint: 'The studio behind Flexr' },
-  { name: 'SandboxMax', href: 'https://sandboxmax.com', hint: 'Client-side developer utilities' },
-  { name: 'CronCrunch', href: 'https://croncrunch.dev', hint: 'Cron expression tools' },
-  { name: 'MockDock', href: 'https://mockdock.dev', hint: 'Mock API sandbox' },
-];
 ---
 
 <!doctype html>
@@ -61,29 +55,6 @@ const network = [
       <slot />
     </main>
 
-    <footer class="border-t border-zinc-800/70">
-      <div class="mx-auto flex w-full max-w-7xl flex-col gap-4 px-4 py-6 lg:px-6">
-        <nav aria-label="Vibsio tool network" class="flex flex-wrap items-center gap-x-5 gap-y-2">
-          <span class="text-[11px] font-semibold tracking-widest text-zinc-600 uppercase">
-            More from Vibsio
-          </span>
-          {
-            network.map((tool) => (
-              <a
-                href={tool.href}
-                title={tool.hint}
-                class="text-xs text-zinc-500 transition-colors hover:text-indigo-300"
-              >
-                {tool.name}
-              </a>
-            ))
-          }
-        </nav>
-        <div class="flex flex-col items-start justify-between gap-2 text-xs text-zinc-500 sm:flex-row sm:items-center">
-          <p>&copy; 2026 <a href="https://vibs.io" class="text-zinc-400 transition-colors hover:text-indigo-300">Vibsio LLC</a> &middot; flexr.dev</p>
-          <p>No servers. No tracking. Your layouts never leave the browser.</p>
-        </div>
-      </div>
-    </footer>
+    <NetworkFooter />
   </body>
 </html>
