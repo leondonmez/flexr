@@ -15,6 +15,12 @@ export function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
+
+// Optional per-page long-form SEO copy (present on select entries only).
+const supplementalSections =
+  (entry as {
+    supplementalSections?: Array<{ h2: string; paragraphs: string[]; code?: string }>;
+  }).supplementalSections ?? [];
 ---
 
 <Layout
@@ -41,5 +47,23 @@ const { entry } = Astro.props;
   <script type="application/json" id="flexr-initial-state" set:html={JSON.stringify(entry.initialState)} />
 
   <FlexrApp />
+
+  {
+    supplementalSections.map((section) => (
+      <section class="seo-prose mx-auto w-full max-w-7xl px-4 pt-2 pb-8 lg:px-6">
+        <h2 class="text-xl font-light tracking-tight text-zinc-100 sm:text-2xl">{section.h2}</h2>
+        {section.paragraphs.map((paragraph) => (
+          <p
+            class="mt-3 max-w-3xl text-sm leading-relaxed font-light text-zinc-400"
+            set:html={paragraph}
+          />
+        ))}
+        {section.code && (
+          <pre class="mt-4 max-w-3xl overflow-x-auto rounded-xl border border-zinc-800 bg-zinc-950/70 p-4 text-[13px] leading-relaxed text-zinc-300"><code class="font-mono">{section.code}</code></pre>
+        )}
+      </section>
+    ))
+  }
+
   <RelatedLayouts currentSlug={entry.slug} />
 </Layout>

@@ -69,6 +69,24 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer;
 }
 
+/* Inline code inside long-form pSEO prose sections */
+.seo-prose code {
+  border-radius: 0.25rem;
+  background-color: rgb(39 39 42 / 0.7);
+  padding: 0.0625rem 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  color: var(--color-indigo-300);
+}
+
+/* The fenced example block re-uses <code> but should stay unstyled inline */
+.seo-prose pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
 /* Slim scrollbars for the code block */
 pre::-webkit-scrollbar {
   height: 8px;
