@@ -1,0 +1,155 @@
+---
+// Standalone pSEO landing page for the "tailwind grid reverse" intent.
+// Kept separate from the flex chat-layout page on purpose: grid ordering is
+// a distinct mechanism (order-* utilities, grid-flow, rtl direction), so
+// mixing it into the flex page would be an intent mismatch. Uses the shared
+// Layout + FlexrApp + RelatedLayouts so it is visually identical to the
+// dictionary-driven pages in [slug].astro.
+import Layout from '../layouts/Layout.astro';
+import FlexrApp from '../components/FlexrApp.astro';
+import RelatedLayouts from '../components/RelatedLayouts.astro';
+
+const slug = 'tailwind-reverse-grid-layout';
+const title = 'Tailwind Grid Reverse: Flipping Grid Item Order';
+const metaDescription =
+  'Master reversing order in Tailwind CSS Grid. Learn how to use grid-flow-row-dense, order utilities, and direction rules with clean copy-paste code blocks.';
+
+// Pre-configure the live laboratory in Grid mode so the interactive canvas
+// matches the topic. Item order is then explored via each item's order-*
+// override in the control panel.
+const initialState = {
+  mode: 'grid',
+  direction: 'flex-row',
+  justify: 'justify-start',
+  align: 'items-stretch',
+  wrap: 'flex-nowrap',
+  gap: 'gap-4',
+  cols: 'grid-cols-3',
+  rows: 'grid-rows-2',
+  childrenCount: 6,
+};
+
+// Server-side syntax highlighting that mirrors the app's code exporter
+// (src/scripts/flexr.js hlHtml): tags → sky, attributes → violet, strings
+// → emerald. Keeps the static code blocks visually identical to the live tool.
+const escapeHtml = (s: string) =>
+  s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+const highlight = (src: string) =>
+  escapeHtml(src).replace(
+    /(&lt;\/?[\w-]+|\/?&gt;)|([\w-]+)(?==)|("[^"]*")/g,
+    (_m, tag, attr, str) => {
+      if (tag) return `<span class="text-sky-400">${tag}</span>`;
+      if (attr) return `<span class="text-violet-400">${attr}</span>`;
+      return `<span class="text-emerald-400">${str}</span>`;
+    }
+  );
+
+const orderExample = `<!-- order-last sends the first DOM child to the end, flipping the pair -->
+<div class="grid grid-cols-2 gap-4">
+  <div class="order-last rounded-lg bg-zinc-800 p-4">Item 1</div>
+  <div class="rounded-lg bg-zinc-800 p-4">Item 2</div>
+</div>`;
+
+const responsiveExample = `<!-- Reverse only on mobile: sidebar drops below on small screens,
+     then order-first pulls it back to the front at the md breakpoint -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 grid-flow-row-dense">
+  <aside class="order-last md:order-first rounded-lg bg-zinc-800 p-4">Sidebar</aside>
+  <main class="md:col-span-2 rounded-lg bg-zinc-800 p-4">Main content</main>
+</div>`;
+
+const rtlExample = `<!-- dir="rtl" mirrors the whole grid, reversing every column at once -->
+<div dir="rtl" class="grid grid-cols-3 gap-4">
+  <div class="rounded-lg bg-zinc-800 p-4">1</div>
+  <div class="rounded-lg bg-zinc-800 p-4">2</div>
+  <div class="rounded-lg bg-zinc-800 p-4">3</div>
+</div>`;
+
+const preClass =
+  'mt-4 max-w-3xl overflow-x-auto rounded-xl border border-zinc-800 bg-zinc-950/70 p-4 text-[13px] leading-relaxed text-zinc-300';
+---
+
+<Layout title={title} description={metaDescription} canonical={`https://flexr.dev/${slug}`}>
+  <section class="mx-auto w-full max-w-7xl px-4 pt-8 pb-1 lg:px-6">
+    <p class="mb-2 text-[11px] font-semibold tracking-widest text-indigo-400 uppercase">
+      Layout Recipe
+    </p>
+    <h1 class="text-2xl font-light tracking-tight text-zinc-100 sm:text-3xl">
+      Reversing Item Order in Tailwind CSS Grid
+    </h1>
+    <p class="mt-2.5 max-w-3xl text-sm leading-relaxed font-light text-zinc-400">
+      Searching for <strong class="font-normal text-zinc-200">tailwind grid reverse</strong> lands you
+      in a different toolbox than Flexbox. There is no <code>grid-col-reverse</code> class — to
+      reverse grid column order you reach for the <code>order-*</code> utilities on individual grid
+      items, the packing controls in <code>grid-flow-*</code>, or an <code>rtl</code> writing
+      direction. The <code>flex-col-reverse</code> utility only works inside a flex container, so it
+      cannot help here.
+    </p>
+    <p class="mt-2 text-xs text-zinc-600">
+      The playground below is pre-configured in Grid mode — select any item and change its
+      <span class="font-mono">order</span> to see the sequence flip, then copy the Tailwind or vanilla CSS.
+    </p>
+  </section>
+
+  <script type="application/json" id="flexr-initial-state" set:html={JSON.stringify(initialState)} />
+
+  <FlexrApp />
+
+  <section class="seo-prose mx-auto w-full max-w-7xl px-4 pt-2 pb-10 lg:px-6">
+    <h2 class="text-xl font-light tracking-tight text-zinc-100 sm:text-2xl">
+      Controlling Grid Sequence with Tailwind Order Utilities
+    </h2>
+
+    <p class="mt-3 max-w-3xl text-sm leading-relaxed font-light text-zinc-400">
+      Inside a CSS Grid, visual position is decoupled from DOM position by the
+      <code>order</code> property. Tailwind exposes it as <code>order-first</code> (a very negative
+      order), <code>order-last</code> (a very positive one), and the numeric steps
+      <code>order-1</code> through <code>order-12</code>. Apply them to any grid item and the browser
+      re-sequences the cells without you re-writing the markup — the DOM, and therefore tab and
+      screen-reader order, stays exactly as authored.
+    </p>
+
+    <pre class={preClass}><code class="font-mono" set:html={highlight(orderExample)} /></pre>
+
+    <p class="mt-6 max-w-3xl text-sm leading-relaxed font-light text-zinc-400">
+      Because order utilities are just classes, they take responsive prefixes. This is the cleanest
+      way to reverse a layout on one breakpoint only — pair a base <code>order-last</code> with an
+      <code>md:order-first</code> so a sidebar sits below the content on mobile but leads on desktop.
+      Adding <code>grid-flow-row-dense</code> lets the grid backfill any gaps left behind when items
+      change size or span, keeping the tracks tightly packed.
+    </p>
+
+    <pre class={preClass}><code class="font-mono" set:html={highlight(responsiveExample)} /></pre>
+
+    <p class="mt-6 max-w-3xl text-sm leading-relaxed font-light text-zinc-400">
+      To mirror an entire grid at once — reversing every column in a single stroke — set the writing
+      direction to right-to-left with <code>dir="rtl"</code>. Combined with a fixed
+      <code>grid-cols-3</code> track definition, the columns render in reverse visual order while the
+      source stays untouched. Tailwind also ships <code>rtl:</code> and <code>ltr:</code> variants so
+      you can scope individual utilities to the active direction.
+    </p>
+
+    <pre class={preClass}><code class="font-mono" set:html={highlight(rtlExample)} /></pre>
+  </section>
+
+  <RelatedLayouts currentSlug={slug} />
+</Layout>
+
+<style>
+  /* Inline code chips for this page's prose (scoped; does not affect other
+     pages). The <pre> blocks reset back to plain so highlighting shows through. */
+  .seo-prose code {
+    border-radius: 0.25rem;
+    background-color: rgb(39 39 42 / 0.7);
+    padding: 0.0625rem 0.3rem;
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    color: var(--color-indigo-300);
+  }
+  .seo-prose pre code {
+    background: none;
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+  }
+</style>

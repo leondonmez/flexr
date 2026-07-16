@@ -7,8 +7,17 @@ import layouts from '../data/seoLayouts.json';
 
 const SITE = 'https://flexr.dev';
 
+// Standalone landing pages that live as their own .astro files rather than
+// as dictionary entries (e.g. the dedicated Grid-reverse guide). Listed here
+// so they are still discoverable in the sitemap.
+const STANDALONE_PAGES = ['tailwind-reverse-grid-layout'];
+
 export const GET: APIRoute = () => {
-  const locs = [`${SITE}/`, ...layouts.map((entry) => `${SITE}/${entry.slug}`)];
+  const locs = [
+    `${SITE}/`,
+    ...layouts.map((entry) => `${SITE}/${entry.slug}`),
+    ...STANDALONE_PAGES.map((s) => `${SITE}/${s}`),
+  ];
 
   const body = [
     '<?xml version="1.0" encoding="UTF-8"?>',
