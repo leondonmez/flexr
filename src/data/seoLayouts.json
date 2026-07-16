@@ -231,9 +231,9 @@
   },
   {
     "slug": "tailwind-reverse-column-chat-layout",
-    "title": "Reverse Column Order with flex-col-reverse in Tailwind | Flexr Layout Lab",
+    "title": "How to Use flex-col-reverse in Tailwind CSS",
     "h1": "Reverse Stacking Order with Tailwind flex-col-reverse",
-    "metaDescription": "Render newest content at the bottom like a chat feed using Tailwind's flex-col-reverse. Watch the visual order flip without touching the DOM.",
+    "metaDescription": "Learn how to use the Tailwind flex-col-reverse utility to stack and reverse columns. Copy the exact class syntax with a working chat layout example.",
     "initialState": {
       "mode": "flex",
       "direction": "flex-col-reverse",
