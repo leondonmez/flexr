@@ -231,9 +231,9 @@
   },
   {
     "slug": "tailwind-reverse-column-chat-layout",
-    "title": "Tailwind flex-col-reverse: Reverse Column Order | Flexr Layout Lab",
+    "title": "Reverse Column Order with flex-col-reverse in Tailwind | Flexr Layout Lab",
     "h1": "Reverse Stacking Order with Tailwind flex-col-reverse",
-    "metaDescription": "Learn how to use the Tailwind flex-col-reverse utility to stack and reverse columns. Copy the exact class syntax with a working chat layout example.",
+    "metaDescription": "Render newest content at the bottom like a chat feed using Tailwind's flex-col-reverse. Watch the visual order flip without touching the DOM.",
     "initialState": {
       "mode": "flex",
       "direction": "flex-col-reverse",
@@ -243,16 +243,6 @@
       "gap": "gap-4",
       "childrenCount": 4
     },
-    "explanationText": "'flex-col-reverse' stacks children bottom-to-top: the first element in your DOM renders at the bottom of the container. Chat threads and activity feeds use this so the newest message stays visually anchored at the bottom while you append to the end of the list — and as a bonus, the browser keeps the scroll position pinned there. Note that only the visual order flips; screen readers and tab order still follow the DOM.",
-    "supplementalSections": [
-      {
-        "h2": "Tailwind Grid Reverse: Flipping Grid Item Order",
-        "paragraphs": [
-          "Searching for <strong>tailwind grid reverse</strong> is a different problem from the flex example above. CSS Grid has no <code>grid-col-reverse</code> class — you reverse grid column order with the <code>order-*</code> utilities (<code>order-first</code>, <code>order-last</code>, <code>order-1</code>, and higher) applied to individual grid items, or by changing placement with <code>grid-flow-*</code>. The <code>flex-col-reverse</code> utility only works inside a flex container, never a grid. To send one item to the end of its track, add <code>order-last</code>; to pull one to the front, use <code>order-first</code>.",
-          "For broader changes, <code>grid-flow-row-dense</code> (which maps to <code>grid-auto-flow: row dense</code>) tells the grid to backfill empty tracks instead of leaving gaps, while setting <code>direction: rtl</code> mirrors the entire grid so every column flips at once. Tailwind exposes RTL through the <code>dir</code> variant and its <code>rtl:</code> and <code>ltr:</code> modifiers. Unlike <code>flex-col-reverse</code>, each of these grid techniques rearranges only the visual layout — the DOM order, and therefore tab and screen-reader order, stays exactly as written."
-        ],
-        "code": "<div class=\"grid grid-cols-2 gap-4\">\n  <!-- order-last sends the first DOM child to the end, reversing the two columns -->\n  <div class=\"order-last rounded-lg bg-zinc-800 p-4\">Item 1 — first in the DOM, now shown on the right</div>\n  <div class=\"rounded-lg bg-zinc-800 p-4\">Item 2 — second in the DOM, now shown on the left</div>\n</div>"
-      }
-    ]
+    "explanationText": "'flex-col-reverse' stacks children bottom-to-top: the first element in your DOM renders at the bottom of the container. Chat threads and activity feeds use this so the newest message stays visually anchored at the bottom while you append to the end of the list — and as a bonus, the browser keeps the scroll position pinned there. Note that only the visual order flips; screen readers and tab order still follow the DOM."
   }
 ]
