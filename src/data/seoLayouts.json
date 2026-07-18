@@ -239,9 +239,9 @@
   },
   {
     "slug": "tailwind-reverse-column-chat-layout",
-    "title": "How to Use flex-col-reverse in Tailwind CSS",
+    "title": "Tailwind flex-col-reverse: Reverse Column Order Fast",
     "h1": "Reverse Stacking Order with Tailwind flex-col-reverse",
-    "metaDescription": "Learn how to use the Tailwind flex-col-reverse utility to stack and reverse columns. Copy the exact class syntax with a working chat layout example.",
+    "metaDescription": "Learn how to use Tailwind flex-col-reverse to flip column order and build bottom-anchored chat layouts instantly with working code examples.",
     "initialState": {
       "mode": "flex",
       "direction": "flex-col-reverse",
@@ -251,6 +251,15 @@
       "gap": "gap-4",
       "childrenCount": 4
     },
-    "explanationText": "'flex-col-reverse' stacks children bottom-to-top: the first element in your DOM renders at the bottom of the container. Chat threads and activity feeds use this so the newest message stays visually anchored at the bottom while you append to the end of the list — and as a bonus, the browser keeps the scroll position pinned there. Note that only the visual order flips; screen readers and tab order still follow the DOM."
+    "explanationText": "'flex-col-reverse' stacks children bottom-to-top: the first element in your DOM renders at the bottom of the container. Chat threads and activity feeds use this so the newest message stays visually anchored at the bottom while you append to the end of the list — and as a bonus, the browser keeps the scroll position pinned there. Note that only the visual order flips; screen readers and tab order still follow the DOM.",
+    "supplementalSections": [
+      {
+        "h2": "Flexbox column reversal vs. CSS Grid reversal",
+        "bodyHtml": [
+          "This guide covers <strong>Flexbox column structures</strong> — flipping the stacking order of items inside a <code>flex</code> container with <code>flex-col-reverse</code>, the pattern behind bottom-anchored chat feeds and activity logs.",
+          "Reversing a <strong>CSS Grid</strong> works differently: it uses <code>order-*</code> utilities, <code>grid-flow-*</code>, and <code>dir=\"rtl\"</code> rather than Flexbox classes. If you are trying to reverse grid rows or columns, head to <a href=\"/tailwind-reverse-grid-layout\">Reversing Item Order in Tailwind CSS Grid</a> instead."
+        ]
+      }
+    ]
   }
 ]
