@@ -195,7 +195,15 @@
       "gap": "gap-4",
       "childrenCount": 4
     },
-    "explanationText": "'justify-evenly' distributes children so the space before, between, and after every item is identical — visually calmer than 'justify-between' (which pins the outer items to the edges) and more balanced than 'justify-around' (which halves the outer spacing). It is the right pick for footer link rows, social icon strips, and bottom tab bars. Toggle between the three in the playground above to see the difference instantly."
+    "explanationText": "'justify-evenly' distributes children so the space before, between, and after every item is identical — visually calmer than 'justify-between' (which pins the outer items to the edges) and more balanced than 'justify-around' (which halves the outer spacing). It is the right pick for footer link rows, social icon strips, and bottom tab bars. Toggle between the three in the playground above to see the difference instantly.",
+    "supplementalSections": [
+      {
+        "h2": "Tailwind Space Evenly via justify-evenly",
+        "bodyHtml": [
+          "Use the <code>justify-evenly</code> utility class to space elements evenly across the main axis. It places equal space before the first item, between every pair, and after the last item, keeping a row of links or icons perfectly balanced at any container width."
+        ]
+      }
+    ]
   },
   {
     "slug": "tailwind-baseline-align-text",
