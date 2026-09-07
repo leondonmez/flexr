@@ -5,6 +5,8 @@
 import Layout from '../layouts/Layout.astro';
 import FlexrApp from '../components/FlexrApp.astro';
 import RelatedLayouts from '../components/RelatedLayouts.astro';
+import GuideBody from '../components/GuideBody.astro';
+import type { Guide } from '../components/GuideBody.astro';
 import layouts from '../data/seoLayouts.json';
 
 export function getStaticPaths() {
@@ -15,6 +17,7 @@ export function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
+const canonical = `https://flexr.dev/${entry.slug}`;
 
 // Optional long-form body sections (present on select entries only) — used to
 // disambiguate near-duplicate query intents and add internal links.
@@ -22,13 +25,58 @@ const supplementalSections =
   (entry as {
     supplementalSections?: Array<{ h2: string; bodyHtml: string[] }>;
   }).supplementalSections ?? [];
+
+// Optional deep guide content (rich prose, code blocks, FAQ). When present the
+// page also emits Article + Breadcrumb + FAQ structured data.
+const guide = (entry as { guide?: Guide }).guide;
+
+const jsonLd: Record<string, unknown>[] = guide
+  ? [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'TechArticle',
+        headline: entry.h1,
+        description: entry.metaDescription,
+        url: canonical,
+        mainEntityOfPage: canonical,
+        inLanguage: 'en',
+        ...(guide.datePublished ? { datePublished: guide.datePublished } : {}),
+        ...(guide.dateModified ? { dateModified: guide.dateModified } : {}),
+        author: { '@type': 'Organization', name: 'Flexr', url: 'https://flexr.dev' },
+        publisher: { '@type': 'Organization', name: 'Vibsio', url: 'https://vibs.io' },
+      },
+      {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Flexr', item: 'https://flexr.dev/' },
+          { '@type': 'ListItem', position: 2, name: entry.h1, item: canonical },
+        ],
+      },
+      ...(guide.faq && guide.faq.length > 0
+        ? [
+            {
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: guide.faq.map((f) => ({
+                '@type': 'Question',
+                name: f.q,
+                acceptedAnswer: { '@type': 'Answer', text: f.a },
+              })),
+            },
+          ]
+        : []),
+    ]
+  : [];
 ---
 
-<Layout
-  title={entry.title}
-  description={entry.metaDescription}
-  canonical={`https://flexr.dev/${entry.slug}`}
->
+<Layout title={entry.title} description={entry.metaDescription} canonical={canonical}>
+  {
+    jsonLd.map((obj) => (
+      <script type="application/ld+json" slot="head" set:html={JSON.stringify(obj)} />
+    ))
+  }
+
   <section class="mx-auto w-full max-w-7xl px-4 pt-8 pb-1 lg:px-6">
     <p class="mb-2 text-[11px] font-semibold tracking-widest text-indigo-400 uppercase">
       Layout Recipe
@@ -48,6 +96,8 @@ const supplementalSections =
   <script type="application/json" id="flexr-initial-state" set:html={JSON.stringify(entry.initialState)} />
 
   <FlexrApp />
+
+  {guide && <GuideBody guide={guide} />}
 
   {
     supplementalSections.map((section) => (

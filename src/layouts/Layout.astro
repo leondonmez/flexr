@@ -34,6 +34,7 @@ const {
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
+    <slot name="head" />
   </head>
   <body class="flex min-h-full flex-col text-zinc-100 antialiased">
     <header class="sticky top-0 z-40 border-b border-zinc-800/70 bg-zinc-950/80 backdrop-blur">

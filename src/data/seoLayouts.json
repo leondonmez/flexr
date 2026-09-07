@@ -13,7 +13,65 @@
       "gap": "gap-4",
       "childrenCount": 3
     },
-    "explanationText": "To center an element perfectly inside a parent container using Tailwind CSS, combine 'flex' with 'justify-center' (horizontal alignment) and 'items-center' (vertical alignment). Ensure the parent container has a defined height (like 'h-screen' or 'min-h-full') so vertical centering is visible."
+    "explanationText": "To center an element perfectly inside a parent container using Tailwind CSS, combine 'flex' with 'justify-center' (horizontal alignment) and 'items-center' (vertical alignment). Ensure the parent container has a defined height (like 'h-screen' or 'min-h-full') so vertical centering is visible.",
+    "guide": {
+      "datePublished": "2026-07-07",
+      "dateModified": "2026-09-07",
+      "sections": [
+        {
+          "h2": "The one-liner: flex, items-center, and justify-center",
+          "body": [
+            "The fastest way to center a div both horizontally and vertically in Tailwind CSS is three utility classes on the <em>parent</em> element: <code>flex</code>, <code>items-center</code>, and <code>justify-center</code>. Then give the parent a height &mdash; <code>min-h-screen</code> for the full viewport &mdash; so there is vertical space to center within.",
+            "<code>justify-center</code> centers children along the main (horizontal) axis, and <code>items-center</code> centers them along the cross (vertical) axis. Used together they place the child in the exact middle of the container."
+          ],
+          "code": [
+            { "label": "Tailwind", "lang": "html", "src": "<div class=\"flex items-center justify-center min-h-screen\">\n  <div>Centered</div>\n</div>" },
+            { "label": "Vanilla CSS", "lang": "css", "src": ".parent {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  min-height: 100vh;\n}" }
+          ]
+        },
+        {
+          "h2": "Why items-center isn't centering vertically",
+          "body": [
+            "The most common reason a div refuses to center vertically is that its parent has no height. A flex container is only as tall as its content by default, so <code>items-center</code> has no spare vertical space to work with. Give the parent an explicit height and the child snaps to the middle.",
+            "Use <code>min-h-screen</code> for a full-viewport section, <code>h-full</code> when the parent already sits inside a sized ancestor, or a fixed height like <code>h-96</code> for a self-contained box."
+          ]
+        },
+        {
+          "h2": "Center on one axis only",
+          "body": [
+            "When you only need one direction, drop the utility for the axis you do not care about. <strong>Horizontal only:</strong> use <code>flex justify-center</code>. <strong>Vertical only:</strong> use <code>flex items-center</code> together with a parent height. <strong>A single block that has a width:</strong> <code>mx-auto</code> centers it horizontally with no flexbox at all."
+          ],
+          "code": [
+            { "label": "Horizontal only", "lang": "html", "src": "<div class=\"flex justify-center\">\n  <div>Centered horizontally</div>\n</div>" },
+            { "label": "Block element with a width", "lang": "html", "src": "<div class=\"mx-auto w-64\">Centered horizontally</div>" }
+          ]
+        },
+        {
+          "h2": "The Grid shortcut: place-items-center",
+          "body": [
+            "CSS Grid offers an even shorter route. <code>grid place-items-center</code> centers children on both axes in a single utility &mdash; no separate <code>justify</code> and <code>items</code> classes needed. For one centered child it behaves identically to the flex version, so the choice comes down to preference."
+          ],
+          "code": [
+            { "label": "Tailwind", "lang": "html", "src": "<div class=\"grid place-items-center min-h-screen\">\n  <div>Centered</div>\n</div>" }
+          ]
+        },
+        {
+          "h2": "Common mistakes",
+          "body": [
+            "<strong>The parent has no height.</strong> Vertical centering needs vertical space &mdash; add <code>min-h-screen</code> or a fixed height to the container.",
+            "<strong>Using <code>text-center</code> for a block.</strong> <code>text-center</code> only centers inline content and text, not a block-level child element.",
+            "<strong>Putting the alignment on the child.</strong> <code>flex</code>, <code>items-center</code>, and <code>justify-center</code> belong on the parent container, not on the element you want centered.",
+            "<strong>Forgetting <code>flex</code> or <code>grid</code>.</strong> The alignment utilities do nothing until the container is a flex or grid context."
+          ]
+        }
+      ],
+      "faq": [
+        { "q": "How do I center a div horizontally and vertically in Tailwind CSS?", "a": "Put flex items-center justify-center on the parent element and give it a height such as min-h-screen. items-center handles vertical centering and justify-center handles horizontal centering." },
+        { "q": "Why is items-center not centering my div vertically?", "a": "Because the flex container has no extra vertical space. A flex parent is only as tall as its content unless you set a height. Add min-h-screen, h-full, or a fixed height and vertical centering works." },
+        { "q": "How do I center a div without flexbox?", "a": "Use grid place-items-center on the parent to center on both axes, or mx-auto on a block element that has a defined width to center it horizontally only." },
+        { "q": "What is the difference between place-items-center and items-center?", "a": "place-items-center is a CSS Grid shorthand that sets both align-items and justify-items at once. items-center only sets cross-axis alignment and is used with flexbox alongside justify-center." }
+      ]
+    }
   },
   {
     "slug": "space-between-navbar-tailwind",
@@ -29,7 +87,51 @@
       "gap": "gap-4",
       "childrenCount": 3
     },
-    "explanationText": "The classic navbar split uses 'flex justify-between items-center' on the header container. 'justify-between' pushes the first child (your logo) to the far left and the last child (your menu or CTA button) to the far right, distributing any remaining children evenly between them, while 'items-center' keeps everything vertically aligned on one line."
+    "explanationText": "The classic navbar split uses 'flex justify-between items-center' on the header container. 'justify-between' pushes the first child (your logo) to the far left and the last child (your menu or CTA button) to the far right, distributing any remaining children evenly between them, while 'items-center' keeps everything vertically aligned on one line.",
+    "guide": {
+      "datePublished": "2026-07-07",
+      "dateModified": "2026-09-07",
+      "sections": [
+        {
+          "h2": "The navbar split: justify-between and items-center",
+          "body": [
+            "A responsive header is just one flex row. <code>flex items-center justify-between</code> pins the first child to the left edge and the last child to the right edge, while <code>items-center</code> keeps them on the same vertical line. Drop your logo in first and your nav or call-to-action last, and the split is done &mdash; no floats, no absolute positioning."
+          ],
+          "code": [
+            { "label": "Tailwind", "lang": "html", "src": "<header class=\"flex items-center justify-between px-6 py-4\">\n  <a href=\"/\" class=\"font-bold\">Logo</a>\n  <nav class=\"flex gap-6\">\n    <a href=\"/docs\">Docs</a>\n    <a href=\"/pricing\">Pricing</a>\n  </nav>\n</header>" },
+            { "label": "Vanilla CSS", "lang": "css", "src": ".navbar {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}" }
+          ]
+        },
+        {
+          "h2": "Pushing a single item over with ml-auto",
+          "body": [
+            "When you have only two elements, or you want most links grouped on one side, <code>ml-auto</code> is often cleaner than <code>justify-between</code>. It hands the leftover space to one element's left margin, pushing it &mdash; and everything after it &mdash; to the right edge."
+          ],
+          "code": [
+            { "label": "Tailwind", "lang": "html", "src": "<header class=\"flex items-center gap-6\">\n  <a href=\"/\">Logo</a>\n  <a href=\"/login\" class=\"ml-auto\">Sign in</a>\n</header>" }
+          ]
+        },
+        {
+          "h2": "Three or more items",
+          "body": [
+            "With three children, <code>justify-between</code> pins the outer two to the edges and centers the middle one &mdash; ideal for a logo / centered nav / CTA layout. If you instead want the logo alone on the left and several links grouped on the right, wrap those links in a single <code>&lt;nav&gt;</code> so the header only sees two flex children."
+          ]
+        },
+        {
+          "h2": "Common mistakes",
+          "body": [
+            "<strong>Forgetting <code>items-center</code>.</strong> Without it, the logo and nav text align to the top of the row instead of the middle.",
+            "<strong>Expecting <code>justify-between</code> to space grouped links.</strong> It only spreads the direct flex children; add <code>gap</code> to the inner <code>&lt;nav&gt;</code> to space the links themselves.",
+            "<strong>Putting the utilities on a non-flex element.</strong> <code>justify-between</code> does nothing until the container is <code>flex</code>."
+          ]
+        }
+      ],
+      "faq": [
+        { "q": "How do I put a logo on the left and menu on the right in Tailwind?", "a": "Make the header a flex row with flex items-center justify-between, then place the logo as the first child and the nav as the last child." },
+        { "q": "How do I push just one button to the right of a navbar?", "a": "Add ml-auto to that button (or to the first element that should move right). It absorbs the free space and pushes itself and following items to the right edge." },
+        { "q": "Why is my navbar logo not vertically aligned with the links?", "a": "The header is missing items-center. Without it, flex children align to the top of the row instead of the middle." }
+      ]
+    }
   },
   {
     "slug": "tailwind-sticky-footer-layout",
@@ -45,7 +147,51 @@
       "gap": "gap-4",
       "childrenCount": 3
     },
-    "explanationText": "A sticky footer keeps your footer pinned to the bottom of the viewport even when page content is short. Apply 'flex flex-col justify-between min-h-screen' to your page wrapper: the column direction stacks header, main, and footer vertically, and 'justify-between' pushes the first child to the top and the last child to the bottom. Alternatively, put 'flex-1' on the main content area to make it absorb all spare space."
+    "explanationText": "A sticky footer keeps your footer pinned to the bottom of the viewport even when page content is short. Apply 'flex flex-col justify-between min-h-screen' to your page wrapper: the column direction stacks header, main, and footer vertically, and 'justify-between' pushes the first child to the top and the last child to the bottom. Alternatively, put 'flex-1' on the main content area to make it absorb all spare space.",
+    "guide": {
+      "datePublished": "2026-07-07",
+      "dateModified": "2026-09-07",
+      "sections": [
+        {
+          "h2": "The sticky footer pattern: flex-col, min-h-screen, flex-1",
+          "body": [
+            "A sticky footer sits at the bottom of the viewport on short pages and below the content on long ones. Make the page wrapper a full-height column with <code>flex flex-col min-h-screen</code>, then give the main content <code>flex-1</code> so it expands to fill any leftover space, pushing the footer down."
+          ],
+          "code": [
+            { "label": "Tailwind", "lang": "html", "src": "<body class=\"flex flex-col min-h-screen\">\n  <header>...</header>\n  <main class=\"flex-1\">...</main>\n  <footer>...</footer>\n</body>" },
+            { "label": "Vanilla CSS", "lang": "css", "src": "body {\n  display: flex;\n  flex-direction: column;\n  min-height: 100vh;\n}\nmain {\n  flex: 1 0 auto;\n}" }
+          ]
+        },
+        {
+          "h2": "min-h-screen vs min-h-dvh on mobile",
+          "body": [
+            "<code>min-h-screen</code> maps to <code>100vh</code>, which on phones can include the area under the browser toolbar and cause a slight jump as the bar shows and hides. Tailwind also ships <code>min-h-dvh</code> (dynamic viewport height): it tracks the visible viewport in real time, so the footer stays put. Prefer <code>min-h-dvh</code> for app-like mobile layouts."
+          ]
+        },
+        {
+          "h2": "flex vs grid for a sticky footer",
+          "body": [
+            "Grid does the same job with a three-row template: <code>grid grid-rows-[auto_1fr_auto] min-h-dvh</code> sizes the header and footer to their content while the middle <code>1fr</code> row absorbs the slack. Flex is the more common choice, but grid is tidy when you already know the header / body / footer structure."
+          ],
+          "code": [
+            { "label": "Grid alternative", "lang": "html", "src": "<div class=\"grid grid-rows-[auto_1fr_auto] min-h-dvh\">\n  <header>...</header>\n  <main>...</main>\n  <footer>...</footer>\n</div>" }
+          ]
+        },
+        {
+          "h2": "Common mistakes",
+          "body": [
+            "<strong>Using <code>position: fixed</code> on the footer.</strong> A fixed footer overlaps content and is always visible &mdash; not the same as a sticky footer that follows the content.",
+            "<strong>No height on the wrapper.</strong> Without <code>min-h-screen</code> or <code>min-h-dvh</code> there is nothing for <code>flex-1</code> to fill.",
+            "<strong>Putting <code>flex-1</code> on the footer.</strong> It belongs on the main content region, which should grow &mdash; not the footer."
+          ]
+        }
+      ],
+      "faq": [
+        { "q": "How do I keep a footer at the bottom on short pages in Tailwind?", "a": "Wrap the page in flex flex-col min-h-screen (or min-h-dvh) and add flex-1 to the main content so it expands and pushes the footer to the bottom." },
+        { "q": "What is the difference between min-h-screen and min-h-dvh?", "a": "min-h-screen is 100vh; min-h-dvh is the dynamic viewport height that adjusts as the mobile browser toolbar appears and disappears, avoiding layout jumps on phones." },
+        { "q": "Should I use flex or grid for a sticky footer?", "a": "Both work. Flex uses flex flex-col with flex-1 on main; grid uses grid-rows-[auto_1fr_auto]. Pick whichever matches the rest of your layout." }
+      ]
+    }
   },
   {
     "slug": "tailwind-equal-height-cards",
@@ -61,7 +207,51 @@
       "gap": "gap-6",
       "childrenCount": 3
     },
-    "explanationText": "Equal-height cards are flexbox's default behavior, and Tailwind exposes it through 'items-stretch' (which is applied automatically when you use 'flex'). Every direct child stretches on the cross axis to match the tallest sibling in its row — no JavaScript height matching, no fixed heights. If your cards stopped matching heights, check whether an 'items-start' or 'items-center' utility crept onto the parent."
+    "explanationText": "Equal-height cards are flexbox's default behavior, and Tailwind exposes it through 'items-stretch' (which is applied automatically when you use 'flex'). Every direct child stretches on the cross axis to match the tallest sibling in its row — no JavaScript height matching, no fixed heights. If your cards stopped matching heights, check whether an 'items-start' or 'items-center' utility crept onto the parent.",
+    "guide": {
+      "datePublished": "2026-07-07",
+      "dateModified": "2026-09-07",
+      "sections": [
+        {
+          "h2": "Equal height is flexbox's default",
+          "body": [
+            "Put a row of cards in a <code>flex</code> container and they already match heights &mdash; <code>items-stretch</code> is the default, so every card stretches on the cross axis to the height of the tallest sibling. No JavaScript, no fixed heights, no table hacks."
+          ],
+          "code": [
+            { "label": "Tailwind", "lang": "html", "src": "<div class=\"flex gap-6\">\n  <div class=\"flex-1 rounded-lg border p-4\">Short card</div>\n  <div class=\"flex-1 rounded-lg border p-4\">A much taller card with more text inside</div>\n</div>" },
+            { "label": "Vanilla CSS", "lang": "css", "src": ".cards {\n  display: flex;\n  align-items: stretch;\n  gap: 1.5rem;\n}" }
+          ]
+        },
+        {
+          "h2": "When cards stop matching heights",
+          "body": [
+            "If a card row suddenly has uneven heights, an alignment utility usually crept onto the parent. <code>items-start</code>, <code>items-center</code>, or <code>items-end</code> each override the stretch and size cards to their own content. Remove them, or set <code>items-stretch</code> explicitly, to restore matching heights."
+          ]
+        },
+        {
+          "h2": "Pushing a button to the bottom of every card",
+          "body": [
+            "Equal-height cards look best when their footers line up. Make each card a column with <code>flex flex-col</code>, then add <code>mt-auto</code> to the button or footer so it sinks to the bottom regardless of how much text sits above it."
+          ],
+          "code": [
+            { "label": "Tailwind", "lang": "html", "src": "<div class=\"flex flex-1 flex-col rounded-lg border p-4\">\n  <p>Card body of any length...</p>\n  <button class=\"mt-auto\">Action</button>\n</div>" }
+          ]
+        },
+        {
+          "h2": "Common mistakes",
+          "body": [
+            "<strong>Setting a fixed <code>h-*</code> on cards.</strong> It breaks the moment one card's content overflows; let stretch do the work instead.",
+            "<strong>Adding <code>items-center</code> or <code>items-start</code> to the row.</strong> Either one cancels the equal-height stretch.",
+            "<strong>Forgetting <code>flex-1</code>.</strong> Without it, cards size to their content width and look uneven across the row."
+          ]
+        }
+      ],
+      "faq": [
+        { "q": "How do I make all cards the same height in Tailwind?", "a": "Place them in a flex row and leave the default items-stretch in place; every card stretches to match the tallest one automatically." },
+        { "q": "Why are my Tailwind cards different heights?", "a": "An items-start, items-center, or items-end utility on the parent is overriding the default stretch. Remove it or set items-stretch." },
+        { "q": "How do I align a button to the bottom of each card?", "a": "Make the card flex flex-col and add mt-auto to the button so it drops to the bottom of the card." }
+      ]
+    }
   },
   {
     "slug": "vertical-stack-tailwind-flex-col",
@@ -77,7 +267,48 @@
       "gap": "gap-4",
       "childrenCount": 4
     },
-    "explanationText": "'flex flex-col' rotates the main axis so children stack top-to-bottom, and 'gap-4' inserts identical spacing between every child without the margin-collapsing headaches of 'space-y-*' or manual margins. This is the cleanest pattern for form fields, settings lists, and any single-column mobile layout. Remember that in column mode, 'justify-*' now controls vertical distribution and 'items-*' controls horizontal alignment."
+    "explanationText": "'flex flex-col' rotates the main axis so children stack top-to-bottom, and 'gap-4' inserts identical spacing between every child without the margin-collapsing headaches of 'space-y-*' or manual margins. This is the cleanest pattern for form fields, settings lists, and any single-column mobile layout. Remember that in column mode, 'justify-*' now controls vertical distribution and 'items-*' controls horizontal alignment.",
+    "guide": {
+      "datePublished": "2026-07-07",
+      "dateModified": "2026-09-07",
+      "sections": [
+        {
+          "h2": "Stacking with flex-col and gap",
+          "body": [
+            "<code>flex flex-col</code> turns a container's main axis vertical, so children stack top to bottom. Add <code>gap-4</code> and every child gets identical spacing between it and the next &mdash; the modern replacement for margins between stacked elements."
+          ],
+          "code": [
+            { "label": "Tailwind", "lang": "html", "src": "<div class=\"flex flex-col gap-4\">\n  <input class=\"border p-2\" />\n  <input class=\"border p-2\" />\n  <button>Submit</button>\n</div>" },
+            { "label": "Vanilla CSS", "lang": "css", "src": ".stack {\n  display: flex;\n  flex-direction: column;\n  gap: 1rem;\n}" }
+          ]
+        },
+        {
+          "h2": "gap vs space-y",
+          "body": [
+            "Tailwind offers two ways to space a stack: <code>gap-4</code> (a real flex or grid gap) and <code>space-y-4</code> (margins between children). Prefer <code>gap</code> &mdash; it never collapses, it works the same in flex and grid, and it leaves no stray margin on the first or last child. Reach for <code>space-y-*</code> only on plain block layouts that are not flex or grid."
+          ]
+        },
+        {
+          "h2": "Alignment flips in column mode",
+          "body": [
+            "The axis swap catches people out. In a column, <code>justify-*</code> now controls <em>vertical</em> distribution and <code>items-*</code> controls <em>horizontal</em> alignment. So <code>items-center</code> centers the stack left-to-right, and <code>justify-center</code> centers it top-to-bottom (given the parent has a height)."
+          ]
+        },
+        {
+          "h2": "Common mistakes",
+          "body": [
+            "<strong>Expecting <code>justify-center</code> to center horizontally.</strong> In a column the main axis is vertical, so it centers vertically; use <code>items-center</code> for horizontal.",
+            "<strong>Mixing <code>gap</code> and <code>space-y</code>.</strong> Pick one; together they double the spacing.",
+            "<strong>Forgetting <code>flex</code>.</strong> <code>flex-col</code> does nothing until the container is a flex context."
+          ]
+        }
+      ],
+      "faq": [
+        { "q": "How do I stack divs vertically in Tailwind?", "a": "Use flex flex-col on the parent and gap-4 for even spacing between the stacked children." },
+        { "q": "Should I use gap or space-y for vertical spacing?", "a": "Prefer gap. It does not collapse margins, works in both flex and grid, and never leaves a trailing margin. Use space-y only for non-flex block layouts." },
+        { "q": "Why does justify-center not center my column horizontally?", "a": "In flex-col the main axis is vertical, so justify-center centers vertically. Use items-center for horizontal centering in a column." }
+      ]
+    }
   },
   {
     "slug": "tailwind-grid-3-columns",
@@ -95,7 +326,51 @@
       "rows": "grid-rows-2",
       "childrenCount": 6
     },
-    "explanationText": "'grid grid-cols-3 gap-6' creates three equal-width columns ('repeat(3, minmax(0, 1fr))' under the hood) with consistent gutters in both directions. Children flow into cells automatically, left to right, wrapping to a new row every three items — no manual row management needed. The 'minmax(0, 1fr)' Tailwind generates is important: it lets long content shrink instead of blowing out the column width."
+    "explanationText": "'grid grid-cols-3 gap-6' creates three equal-width columns ('repeat(3, minmax(0, 1fr))' under the hood) with consistent gutters in both directions. Children flow into cells automatically, left to right, wrapping to a new row every three items — no manual row management needed. The 'minmax(0, 1fr)' Tailwind generates is important: it lets long content shrink instead of blowing out the column width.",
+    "guide": {
+      "datePublished": "2026-07-07",
+      "dateModified": "2026-09-07",
+      "sections": [
+        {
+          "h2": "grid grid-cols-3 with a gap",
+          "body": [
+            "<code>grid grid-cols-3 gap-6</code> creates three equal-width columns and fills them left to right, wrapping to a new row every third item. Under the hood Tailwind generates <code>repeat(3, minmax(0, 1fr))</code>, so the columns share the width evenly."
+          ],
+          "code": [
+            { "label": "Tailwind", "lang": "html", "src": "<div class=\"grid grid-cols-3 gap-6\">\n  <div>1</div>\n  <div>2</div>\n  <div>3</div>\n  <div>4</div>\n</div>" },
+            { "label": "Vanilla CSS", "lang": "css", "src": ".grid-3 {\n  display: grid;\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n  gap: 1.5rem;\n}" }
+          ]
+        },
+        {
+          "h2": "Make it responsive",
+          "body": [
+            "Three columns are too tight on phones. Start with one column and step up at breakpoints: <code>grid-cols-1 sm:grid-cols-2 lg:grid-cols-3</code>. Each prefix only changes the column count at that width, and the gap stays consistent throughout."
+          ],
+          "code": [
+            { "label": "Tailwind", "lang": "html", "src": "<div class=\"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6\">\n  ...\n</div>" }
+          ]
+        },
+        {
+          "h2": "Spanning cells and the minmax(0, 1fr) trick",
+          "body": [
+            "Make one cell wider with <code>col-span-2</code>. And if a long word or a wide image ever blows a column out, that is exactly what the <code>minmax(0, 1fr)</code> Tailwind emits prevents &mdash; the <code>0</code> minimum lets a column shrink below its content size instead of overflowing. Add <code>min-w-0</code> to a stubborn child if text still refuses to wrap."
+          ]
+        },
+        {
+          "h2": "Common mistakes",
+          "body": [
+            "<strong>Using flex for strict equal columns.</strong> Flex sizes to content unless you add basis utilities; grid columns are equal by default.",
+            "<strong>Skipping responsive prefixes.</strong> Three columns on a phone are unreadable &mdash; start at <code>grid-cols-1</code>.",
+            "<strong>A child overflowing its track.</strong> Add <code>min-w-0</code> so long content can shrink and wrap."
+          ]
+        }
+      ],
+      "faq": [
+        { "q": "How do I make a 3 column grid in Tailwind?", "a": "Use grid grid-cols-3 gap-6 on the container; children flow into three equal columns automatically." },
+        { "q": "How do I make a 3 column grid responsive?", "a": "Use grid-cols-1 on mobile and add breakpoint prefixes like sm:grid-cols-2 lg:grid-cols-3 to increase the column count on larger screens." },
+        { "q": "Why is my grid column overflowing its width?", "a": "A child's content is wider than the track. Tailwind's minmax(0, 1fr) usually handles this; if not, add min-w-0 to the child so it can shrink and wrap." }
+      ]
+    }
   },
   {
     "slug": "tailwind-right-align-button",
@@ -111,7 +386,51 @@
       "gap": "gap-4",
       "childrenCount": 2
     },
-    "explanationText": "Wrap the button in a 'flex justify-end' container to push it (and any siblings) to the right edge — the modern replacement for 'float: right'. This is the standard pattern for dialog action rows and form submit areas. Need one element left and the button right instead? Switch to 'justify-between', or keep 'justify-end' and add 'mr-auto' to the element that should stay on the left."
+    "explanationText": "Wrap the button in a 'flex justify-end' container to push it (and any siblings) to the right edge — the modern replacement for 'float: right'. This is the standard pattern for dialog action rows and form submit areas. Need one element left and the button right instead? Switch to 'justify-between', or keep 'justify-end' and add 'mr-auto' to the element that should stay on the left.",
+    "guide": {
+      "datePublished": "2026-07-07",
+      "dateModified": "2026-09-07",
+      "sections": [
+        {
+          "h2": "justify-end pushes everything right",
+          "body": [
+            "Wrap your buttons in a <code>flex justify-end</code> container and they sit against the right edge &mdash; the modern replacement for <code>float: right</code>. Add <code>gap-3</code> to space multiple buttons."
+          ],
+          "code": [
+            { "label": "Tailwind", "lang": "html", "src": "<div class=\"flex justify-end gap-3\">\n  <button>Cancel</button>\n  <button>Save</button>\n</div>" },
+            { "label": "Vanilla CSS", "lang": "css", "src": ".actions {\n  display: flex;\n  justify-content: flex-end;\n  gap: 0.75rem;\n}" }
+          ]
+        },
+        {
+          "h2": "One left, one right: ml-auto",
+          "body": [
+            "For a toolbar with a title on the left and a button on the right, keep <code>flex</code> and add <code>ml-auto</code> to the right-hand button. It soaks up the free space and slides itself to the edge &mdash; no <code>justify-between</code> needed."
+          ],
+          "code": [
+            { "label": "Tailwind", "lang": "html", "src": "<div class=\"flex items-center\">\n  <h2>Settings</h2>\n  <button class=\"ml-auto\">Save</button>\n</div>" }
+          ]
+        },
+        {
+          "h2": "Dialog action rows",
+          "body": [
+            "The <code>flex justify-end gap-3</code> pattern is the standard for modal and form footers, with Cancel next to Save. If you want the destructive action kept far from the safe one, add <code>mr-auto</code> to it so it stays on the left while the rest group on the right."
+          ]
+        },
+        {
+          "h2": "Common mistakes",
+          "body": [
+            "<strong>Reaching for <code>float: right</code>.</strong> It is legacy, needs clearfixes, and does not vertically align &mdash; flexbox replaces it.",
+            "<strong>Using <code>text-right</code>.</strong> That only affects inline text, not a block-level button.",
+            "<strong>Forgetting the container must be <code>flex</code>.</strong> <code>justify-end</code> and <code>ml-auto</code> both need a flex parent."
+          ]
+        }
+      ],
+      "faq": [
+        { "q": "How do I right align a button in Tailwind?", "a": "Put it in a flex justify-end container, or add ml-auto to the button inside an existing flex row." },
+        { "q": "What replaces float: right in Tailwind?", "a": "Flexbox. Use flex justify-end on the parent, or ml-auto on the element you want pushed to the right." },
+        { "q": "How do I align one button left and one right?", "a": "Use a flex row and add ml-auto to the button that should sit on the right; the other stays on the left." }
+      ]
+    }
   },
   {
     "slug": "center-image-flexbox-tailwind",
@@ -127,7 +446,54 @@
       "gap": "gap-4",
       "childrenCount": 1
     },
-    "explanationText": "Images are inline elements, so classic centering tricks often fail. The reliable fix: put 'flex justify-center items-center' on the image's parent container, and the image centers both ways regardless of its dimensions. This works for logos in cards, avatars in list rows, and hero illustrations. If you only need horizontal centering, 'flex justify-center' alone does it — or use 'mx-auto' on the image itself with 'block'."
+    "explanationText": "Images are inline elements, so classic centering tricks often fail. The reliable fix: put 'flex justify-center items-center' on the image's parent container, and the image centers both ways regardless of its dimensions. This works for logos in cards, avatars in list rows, and hero illustrations. If you only need horizontal centering, 'flex justify-center' alone does it — or use 'mx-auto' on the image itself with 'block'.",
+    "guide": {
+      "datePublished": "2026-07-07",
+      "dateModified": "2026-09-07",
+      "sections": [
+        {
+          "h2": "Center an image on both axes",
+          "body": [
+            "Images are inline elements, so old centering tricks are unreliable. The dependable fix is to make the image's <em>parent</em> a centering flex container: <code>flex items-center justify-center</code>. The image then sits dead-center regardless of its size &mdash; just give the parent a height so the vertical part has room."
+          ],
+          "code": [
+            { "label": "Tailwind", "lang": "html", "src": "<div class=\"flex items-center justify-center h-64\">\n  <img src=\"/logo.png\" alt=\"Logo\" />\n</div>" },
+            { "label": "Vanilla CSS", "lang": "css", "src": ".frame {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 16rem;\n}" }
+          ]
+        },
+        {
+          "h2": "Horizontal only: mx-auto",
+          "body": [
+            "If you only need horizontal centering, skip flexbox entirely: make the image a block and add auto side margins with <code>mx-auto block</code>. This is perfect for a centered hero image or an avatar above centered text."
+          ],
+          "code": [
+            { "label": "Tailwind", "lang": "html", "src": "<img src=\"/hero.png\" alt=\"\" class=\"mx-auto block\" />" }
+          ]
+        },
+        {
+          "h2": "Filling a frame with object-cover",
+          "body": [
+            "To center <em>and</em> crop an image to fill a fixed box, combine a size with <code>object-cover</code>. It scales the image to cover the box while keeping its center in view, so the picture never stretches or distorts."
+          ],
+          "code": [
+            { "label": "Tailwind", "lang": "html", "src": "<img src=\"/photo.jpg\" alt=\"\" class=\"h-64 w-64 rounded-lg object-cover\" />" }
+          ]
+        },
+        {
+          "h2": "Common mistakes",
+          "body": [
+            "<strong>Leaving the image inline.</strong> Text-align tricks are unreliable for images; center the parent with flex instead.",
+            "<strong>No parent height.</strong> Vertical centering needs vertical space in the container.",
+            "<strong>Using <code>object-fill</code>.</strong> It stretches the image; reach for <code>object-cover</code> to crop without distortion."
+          ]
+        }
+      ],
+      "faq": [
+        { "q": "How do I center an image in Tailwind?", "a": "Put flex items-center justify-center on the image's parent container and give the parent a height; the image centers on both axes." },
+        { "q": "How do I center an image horizontally only?", "a": "Add mx-auto block to the image. Auto side margins center a block-level element horizontally." },
+        { "q": "How do I center and crop an image to a fixed size?", "a": "Use a fixed width and height plus object-cover, which scales the image to fill the box from its center without distortion." }
+      ]
+    }
   },
   {
     "slug": "tailwind-responsive-card-wrap",
@@ -143,7 +509,48 @@
       "gap": "gap-6",
       "childrenCount": 6
     },
-    "explanationText": "'flex flex-wrap gap-6' gives you a card row that gracefully reflows: when the container runs out of horizontal room, overflowing cards wrap onto a new line while keeping identical gutters in both directions. Unlike a rigid grid, each row packs as many cards as fit. Give each card a flex-basis (like 'basis-64') to control the wrap point, and the layout adapts to any screen width with zero media queries."
+    "explanationText": "'flex flex-wrap gap-6' gives you a card row that gracefully reflows: when the container runs out of horizontal room, overflowing cards wrap onto a new line while keeping identical gutters in both directions. Unlike a rigid grid, each row packs as many cards as fit. Give each card a flex-basis (like 'basis-64') to control the wrap point, and the layout adapts to any screen width with zero media queries.",
+    "guide": {
+      "datePublished": "2026-07-07",
+      "dateModified": "2026-09-07",
+      "sections": [
+        {
+          "h2": "flex-wrap lets cards reflow",
+          "body": [
+            "By default flex items refuse to wrap and shrink to fit. Add <code>flex-wrap</code> and, when the row runs out of horizontal room, overflowing cards drop onto a new line instead. With <code>gap-6</code> the spacing stays identical in both directions."
+          ],
+          "code": [
+            { "label": "Tailwind", "lang": "html", "src": "<div class=\"flex flex-wrap gap-6\">\n  <div class=\"basis-64 grow\">Card</div>\n  <div class=\"basis-64 grow\">Card</div>\n  <div class=\"basis-64 grow\">Card</div>\n</div>" },
+            { "label": "Vanilla CSS", "lang": "css", "src": ".cards {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 1.5rem;\n}" }
+          ]
+        },
+        {
+          "h2": "Control the wrap point with basis",
+          "body": [
+            "Give each card a <code>basis-64</code> (its ideal width) plus <code>grow</code>, and the row fits as many 16rem cards as it can, then wraps &mdash; cards on the last partial row stretch to fill. That is a responsive card grid with no media queries at all: the layout adapts purely to the available width."
+          ]
+        },
+        {
+          "h2": "flex-wrap vs grid",
+          "body": [
+            "Both build card grids. Reach for <code>flex-wrap</code> when you want cards to size themselves and pack as many per row as fit (a fluid gallery). Reach for <code>grid grid-cols-*</code> when you want a fixed number of equal columns per breakpoint. Flex wrapping is content-driven; grid is column-driven."
+          ]
+        },
+        {
+          "h2": "Common mistakes",
+          "body": [
+            "<strong>Forgetting <code>flex-wrap</code>.</strong> Without it, cards squish onto one line instead of wrapping.",
+            "<strong>No <code>basis</code>.</strong> Cards collapse to their content width and wrap unpredictably.",
+            "<strong>Using margins instead of <code>gap</code>.</strong> Margins produce uneven spacing once items wrap onto multiple rows."
+          ]
+        }
+      ],
+      "faq": [
+        { "q": "How do I make cards wrap to the next line in Tailwind?", "a": "Add flex-wrap to the flex container; cards that do not fit move to a new line automatically." },
+        { "q": "How do I build a responsive card grid without media queries?", "a": "Use flex flex-wrap with basis-64 grow on each card; they pack as many per row as fit and reflow as the width changes." },
+        { "q": "Should I use flex-wrap or grid for cards?", "a": "Use flex-wrap for a fluid, content-sized gallery; use grid grid-cols-* when you want a fixed number of equal columns at each breakpoint." }
+      ]
+    }
   },
   {
     "slug": "tailwind-2-column-layout",
@@ -161,7 +568,54 @@
       "rows": "grid-rows-1",
       "childrenCount": 2
     },
-    "explanationText": "'grid grid-cols-2 gap-8' is the fastest route to a balanced two-column split for text/image sections, comparison panels, or settings pages. Both columns get exactly half the available width regardless of their content, which flexbox does not guarantee without extra 'basis' utilities. To stack the columns on mobile, prefix the column count with a breakpoint: 'grid-cols-1 md:grid-cols-2'."
+    "explanationText": "'grid grid-cols-2 gap-8' is the fastest route to a balanced two-column split for text/image sections, comparison panels, or settings pages. Both columns get exactly half the available width regardless of their content, which flexbox does not guarantee without extra 'basis' utilities. To stack the columns on mobile, prefix the column count with a breakpoint: 'grid-cols-1 md:grid-cols-2'.",
+    "guide": {
+      "datePublished": "2026-07-07",
+      "dateModified": "2026-09-07",
+      "sections": [
+        {
+          "h2": "Two equal columns with grid-cols-2",
+          "body": [
+            "<code>grid grid-cols-2 gap-8</code> splits a container into two equal columns and drops the first two children side by side. Each column is exactly half the width regardless of its content &mdash; something plain flexbox will not guarantee without extra basis utilities."
+          ],
+          "code": [
+            { "label": "Tailwind", "lang": "html", "src": "<div class=\"grid grid-cols-2 gap-8\">\n  <div>Left</div>\n  <div>Right</div>\n</div>" },
+            { "label": "Vanilla CSS", "lang": "css", "src": ".two-col {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  gap: 2rem;\n}" }
+          ]
+        },
+        {
+          "h2": "Stack on mobile",
+          "body": [
+            "Two columns are cramped on phones. Begin with a single column and split at a breakpoint: <code>grid-cols-1 md:grid-cols-2</code>. Below <code>md</code> the two blocks stack; at <code>md</code> and up they sit side by side."
+          ],
+          "code": [
+            { "label": "Tailwind", "lang": "html", "src": "<div class=\"grid grid-cols-1 md:grid-cols-2 gap-8\">\n  ...\n</div>" }
+          ]
+        },
+        {
+          "h2": "Unequal columns (sidebar + content)",
+          "body": [
+            "For a wide content area beside a narrow sidebar, use fractional tracks: <code>grid-cols-[2fr_1fr]</code> gives the first column twice the width of the second. Or follow the 12-column convention with <code>grid-cols-3</code> and <code>col-span-2</code> for the main area."
+          ],
+          "code": [
+            { "label": "Tailwind", "lang": "html", "src": "<div class=\"grid grid-cols-[2fr_1fr] gap-8\">\n  <main>Content</main>\n  <aside>Sidebar</aside>\n</div>" }
+          ]
+        },
+        {
+          "h2": "Common mistakes",
+          "body": [
+            "<strong>Using flex without <code>basis</code>.</strong> Flex columns size to content, not to half each; grid gives true equal halves.",
+            "<strong>Forgetting the mobile stack.</strong> Start at <code>grid-cols-1</code> and split at a breakpoint.",
+            "<strong>Fighting for equal heights.</strong> Grid rows already align both columns &mdash; no extra work needed."
+          ]
+        }
+      ],
+      "faq": [
+        { "q": "How do I make a two column layout in Tailwind?", "a": "Use grid grid-cols-2 gap-8 on the container; the first two children become equal side-by-side columns." },
+        { "q": "How do I stack two columns on mobile?", "a": "Start with grid-cols-1 and add md:grid-cols-2 so the columns stack below the md breakpoint and split above it." },
+        { "q": "How do I make one column wider than the other?", "a": "Use fractional tracks like grid-cols-[2fr_1fr], or grid-cols-3 with col-span-2 on the wider column." }
+      ]
+    }
   },
   {
     "slug": "tailwind-image-gallery-grid",
@@ -179,7 +633,54 @@
       "rows": "grid-rows-2",
       "childrenCount": 8
     },
-    "explanationText": "A gallery wants uniform cells and tight, even gutters — exactly what 'grid grid-cols-4 gap-4' produces. Images flow into equal-width cells automatically, and adding 'aspect-square object-cover' to each image keeps every thumbnail cropped to the same shape. Scale the column count down at smaller breakpoints ('grid-cols-2 md:grid-cols-4') so thumbnails never get too small to tap."
+    "explanationText": "A gallery wants uniform cells and tight, even gutters — exactly what 'grid grid-cols-4 gap-4' produces. Images flow into equal-width cells automatically, and adding 'aspect-square object-cover' to each image keeps every thumbnail cropped to the same shape. Scale the column count down at smaller breakpoints ('grid-cols-2 md:grid-cols-4') so thumbnails never get too small to tap.",
+    "guide": {
+      "datePublished": "2026-07-07",
+      "dateModified": "2026-09-07",
+      "sections": [
+        {
+          "h2": "A four-column gallery with uniform tiles",
+          "body": [
+            "<code>grid grid-cols-4 gap-4</code> lays photos into four equal columns with tight, even gutters. Add <code>aspect-square object-cover</code> to each image so every thumbnail is cropped to the same shape no matter its original dimensions."
+          ],
+          "code": [
+            { "label": "Tailwind", "lang": "html", "src": "<div class=\"grid grid-cols-4 gap-4\">\n  <img src=\"/1.jpg\" alt=\"\" class=\"aspect-square w-full rounded-lg object-cover\" />\n  <img src=\"/2.jpg\" alt=\"\" class=\"aspect-square w-full rounded-lg object-cover\" />\n</div>" },
+            { "label": "Vanilla CSS", "lang": "css", "src": ".gallery {\n  display: grid;\n  grid-template-columns: repeat(4, minmax(0, 1fr));\n  gap: 1rem;\n}" }
+          ]
+        },
+        {
+          "h2": "Responsive column counts",
+          "body": [
+            "Four tiny columns are unusable on a phone. Scale the count with breakpoints: <code>grid-cols-2 md:grid-cols-3 lg:grid-cols-4</code>. Thumbnails stay tappable on mobile and dense on desktop."
+          ],
+          "code": [
+            { "label": "Tailwind", "lang": "html", "src": "<div class=\"grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4\">\n  ...\n</div>" }
+          ]
+        },
+        {
+          "h2": "Featured tiles that span",
+          "body": [
+            "Make a hero image dominate the grid with <code>col-span-2 row-span-2</code>. The surrounding thumbnails flow around it automatically. Add <code>grid-flow-dense</code> if you want later small tiles to backfill the gaps a large span leaves behind."
+          ],
+          "code": [
+            { "label": "Tailwind", "lang": "html", "src": "<img src=\"/feature.jpg\" alt=\"\" class=\"col-span-2 row-span-2 h-full w-full object-cover\" />" }
+          ]
+        },
+        {
+          "h2": "Common mistakes",
+          "body": [
+            "<strong>No aspect ratio.</strong> Without <code>aspect-square</code> (or a fixed height) tiles come out ragged.",
+            "<strong>Using <code>object-fill</code>.</strong> It distorts photos; <code>object-cover</code> crops cleanly.",
+            "<strong>Too many columns on mobile.</strong> Start at <code>grid-cols-2</code> so thumbnails stay tappable."
+          ]
+        }
+      ],
+      "faq": [
+        { "q": "How do I build an image gallery grid in Tailwind?", "a": "Use grid grid-cols-4 gap-4 and give each image aspect-square object-cover so all thumbnails share the same shape." },
+        { "q": "How do I make a gallery responsive?", "a": "Use grid-cols-2 on mobile and add md:grid-cols-3 lg:grid-cols-4 so the column count grows on larger screens." },
+        { "q": "How do I make one gallery image larger than the rest?", "a": "Add col-span-2 row-span-2 to that image; the others flow around it, and grid-flow-dense can backfill any gaps." }
+      ]
+    }
   },
   {
     "slug": "tailwind-evenly-spaced-links",
@@ -196,14 +697,48 @@
       "childrenCount": 4
     },
     "explanationText": "'justify-evenly' distributes children so the space before, between, and after every item is identical — visually calmer than 'justify-between' (which pins the outer items to the edges) and more balanced than 'justify-around' (which halves the outer spacing). It is the right pick for footer link rows, social icon strips, and bottom tab bars. Toggle between the three in the playground above to see the difference instantly.",
-    "supplementalSections": [
-      {
-        "h2": "Tailwind Space Evenly via justify-evenly",
-        "bodyHtml": [
-          "Use the <code>justify-evenly</code> utility class to space elements evenly across the main axis. It places equal space before the first item, between every pair, and after the last item, keeping a row of links or icons perfectly balanced at any container width."
-        ]
-      }
-    ]
+    "guide": {
+      "datePublished": "2026-07-07",
+      "dateModified": "2026-09-07",
+      "sections": [
+        {
+          "h2": "Tailwind Space Evenly via justify-evenly",
+          "body": [
+            "Use the <code>justify-evenly</code> utility class to space elements evenly across the main axis. It places equal space before the first item, between every pair, and after the last item, keeping a row of links or icons perfectly balanced at any container width.",
+            "Add it to a <code>flex</code> row and every child gets the same breathing room on both sides."
+          ],
+          "code": [
+            { "label": "Tailwind", "lang": "html", "src": "<nav class=\"flex justify-evenly\">\n  <a href=\"/about\">About</a>\n  <a href=\"/blog\">Blog</a>\n  <a href=\"/contact\">Contact</a>\n</nav>" },
+            { "label": "Vanilla CSS", "lang": "css", "src": ".links {\n  display: flex;\n  justify-content: space-evenly;\n}" }
+          ]
+        },
+        {
+          "h2": "evenly vs between vs around",
+          "body": [
+            "The three distribution utilities differ only in their edge spacing. <code>justify-between</code> puts <em>zero</em> space outside the first and last items, so they touch the edges. <code>justify-around</code> gives the outer items <em>half</em> the spacing of the inner gaps. <code>justify-evenly</code> makes every space &mdash; including the outer two &mdash; exactly equal. For a balanced footer or tab bar, <code>justify-evenly</code> reads the cleanest."
+          ]
+        },
+        {
+          "h2": "Even spacing that wraps",
+          "body": [
+            "For a link row that should reflow on small screens while staying evenly spaced, combine <code>flex flex-wrap justify-evenly gap-y-2</code>. Items wrap onto new lines and each line stays evenly distributed."
+          ]
+        },
+        {
+          "h2": "Common mistakes",
+          "body": [
+            "<strong>Expecting a fixed gap.</strong> <code>justify-evenly</code> distributes free space, so it does nothing once items fill the row &mdash; add <code>gap</code> for a guaranteed minimum.",
+            "<strong>Using it on a non-flex element.</strong> It needs a <code>flex</code> (or grid) container.",
+            "<strong>Confusing it with <code>justify-between</code>.</strong> Between pins items to the edges; evenly pads the edges too."
+          ]
+        }
+      ],
+      "faq": [
+        { "q": "What does justify-evenly do in Tailwind?", "a": "It distributes flex items so the space before, between, and after every item is identical, keeping a row perfectly balanced." },
+        { "q": "What is the difference between justify-evenly, justify-between, and justify-around?", "a": "justify-between puts no space at the outer edges, justify-around gives the edges half spacing, and justify-evenly makes every gap equal including the edges." },
+        { "q": "How do I space links evenly in a Tailwind footer?", "a": "Put the links in a flex row and add justify-evenly; add flex-wrap if they should reflow on small screens." }
+      ]
+    }
   },
   {
     "slug": "tailwind-baseline-align-text",
@@ -219,7 +754,48 @@
       "gap": "gap-4",
       "childrenCount": 3
     },
-    "explanationText": "When a row mixes font sizes — a large price next to '/month', or a big metric next to its unit — 'items-center' makes the text look misaligned because it centers boxes, not letters. 'items-baseline' aligns children on their text baselines instead, so every character sits on the same invisible line the way typography intends. This is the single most-missed utility in pricing tables and stat rows."
+    "explanationText": "When a row mixes font sizes — a large price next to '/month', or a big metric next to its unit — 'items-center' makes the text look misaligned because it centers boxes, not letters. 'items-baseline' aligns children on their text baselines instead, so every character sits on the same invisible line the way typography intends. This is the single most-missed utility in pricing tables and stat rows.",
+    "guide": {
+      "datePublished": "2026-07-07",
+      "dateModified": "2026-09-07",
+      "sections": [
+        {
+          "h2": "items-baseline lines up letters, not boxes",
+          "body": [
+            "When a row mixes font sizes &mdash; a large number beside a small label &mdash; <code>items-center</code> looks wrong because it centers each child's box, not its text. <code>items-baseline</code> aligns children on their text baselines instead, so every character sits on the same invisible line the way typography intends."
+          ],
+          "code": [
+            { "label": "Tailwind", "lang": "html", "src": "<div class=\"flex items-baseline gap-1\">\n  <span class=\"text-4xl font-bold\">$29</span>\n  <span class=\"text-sm text-zinc-500\">/month</span>\n</div>" },
+            { "label": "Vanilla CSS", "lang": "css", "src": ".price {\n  display: flex;\n  align-items: baseline;\n  gap: 0.25rem;\n}" }
+          ]
+        },
+        {
+          "h2": "Where baseline alignment matters",
+          "body": [
+            "Pricing tables (<code>$29</code> next to <code>/month</code>), stat blocks (a big metric beside its unit), and headings with a trailing tag all read better on a shared baseline. Any time one piece of text is visibly larger than its neighbour, reach for <code>items-baseline</code>."
+          ]
+        },
+        {
+          "h2": "baseline vs center",
+          "body": [
+            "Use <code>items-center</code> when children are similar in size or are non-text elements like icons and avatars &mdash; it centers their boxes. Use <code>items-baseline</code> specifically when the meaning comes from text sitting on one line. They are not interchangeable; the right choice depends on whether you are aligning boxes or letters."
+          ]
+        },
+        {
+          "h2": "Common mistakes",
+          "body": [
+            "<strong>Using <code>items-center</code> for mixed-size text.</strong> Boxes center, but the letters look misaligned.",
+            "<strong>Applying <code>items-baseline</code> to icon rows.</strong> Icons have no text baseline and can align oddly; use <code>items-center</code> there.",
+            "<strong>Forgetting it is a parent utility.</strong> <code>items-baseline</code> goes on the flex container, not the text spans."
+          ]
+        }
+      ],
+      "faq": [
+        { "q": "How do I align text of different sizes on the same line in Tailwind?", "a": "Use items-baseline on the flex row so the characters sit on a shared baseline instead of centering each box." },
+        { "q": "What is the difference between items-baseline and items-center?", "a": "items-center centers each child's box; items-baseline aligns children on their text baselines. Use baseline for mixed-size text and center for similar-size or non-text elements." },
+        { "q": "Why does my price and its /month label look misaligned?", "a": "They are probably using items-center. Switch the row to items-baseline so the large price and small label share a baseline." }
+      ]
+    }
   },
   {
     "slug": "tailwind-vertical-align-center",
@@ -235,7 +811,48 @@
       "gap": "gap-4",
       "childrenCount": 3
     },
-    "explanationText": "The old 'vertical-align' property never worked the way anyone expected. In flexbox, vertical centering inside a row is one utility: 'items-center' on the parent aligns every child to the vertical middle of the tallest item. This is the fix for icons that sit too high next to text, badges that hug the top of a list row, and avatars that refuse to line up with usernames. Children keep their natural left-packed order because 'justify-start' stays untouched."
+    "explanationText": "The old 'vertical-align' property never worked the way anyone expected. In flexbox, vertical centering inside a row is one utility: 'items-center' on the parent aligns every child to the vertical middle of the tallest item. This is the fix for icons that sit too high next to text, badges that hug the top of a list row, and avatars that refuse to line up with usernames. Children keep their natural left-packed order because 'justify-start' stays untouched.",
+    "guide": {
+      "datePublished": "2026-07-07",
+      "dateModified": "2026-09-07",
+      "sections": [
+        {
+          "h2": "items-center is flexbox's vertical-align",
+          "body": [
+            "The old CSS <code>vertical-align</code> property only ever worked on inline and table-cell elements, which is why it so rarely did what you wanted. In a flex row the answer is one utility on the parent: <code>items-center</code> aligns every child to the vertical middle of the tallest one."
+          ],
+          "code": [
+            { "label": "Tailwind", "lang": "html", "src": "<div class=\"flex items-center gap-2\">\n  <svg class=\"h-5 w-5\">...</svg>\n  <span>Label sits centered next to the icon</span>\n</div>" },
+            { "label": "Vanilla CSS", "lang": "css", "src": ".row {\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n}" }
+          ]
+        },
+        {
+          "h2": "The everyday fixes it solves",
+          "body": [
+            "<code>items-center</code> is the cure for icons that float above their text, badges that hug the top of a list row, and avatars that will not line up with a username. Because it only touches the cross axis, the row keeps its natural left-to-right order &mdash; <code>justify-start</code> stays untouched."
+          ]
+        },
+        {
+          "h2": "Centering a row vs centering a whole container",
+          "body": [
+            "There is a difference between vertically centering items <em>within a row</em> and centering a block <em>inside a tall container</em>. For a single icon-and-text line, <code>items-center</code> alone is enough &mdash; the row is only as tall as its content. To center a card inside a full-height section you also need a parent height (see <a href=\"/how-to-center-div-tailwind\">centering a div</a>). Same utility, different amount of vertical space."
+          ]
+        },
+        {
+          "h2": "Common mistakes",
+          "body": [
+            "<strong>Still reaching for <code>vertical-align</code>.</strong> It does not affect flex children; use <code>items-center</code>.",
+            "<strong>Setting <code>self-center</code> on every child.</strong> One <code>items-center</code> on the parent is simpler than repeating <code>self-center</code>.",
+            "<strong>Expecting it to add height.</strong> <code>items-center</code> aligns within the existing row height; it does not create vertical space."
+          ]
+        }
+      ],
+      "faq": [
+        { "q": "How do I vertically center items in a row in Tailwind?", "a": "Add items-center to the flex row; every child aligns to the vertical middle of the tallest item." },
+        { "q": "What is the Tailwind equivalent of vertical-align?", "a": "For flex layouts it is items-center on the parent, or self-center on a single child. The vertical-align property itself only affects inline and table-cell content." },
+        { "q": "Why is my icon higher than the text next to it?", "a": "The flex row is missing items-center, so children align to the top. Adding items-center lines the icon up with the text's middle." }
+      ]
+    }
   },
   {
     "slug": "tailwind-reverse-column-chat-layout",
@@ -252,14 +869,45 @@
       "childrenCount": 4
     },
     "explanationText": "'flex-col-reverse' stacks children bottom-to-top: the first element in your DOM renders at the bottom of the container. Chat threads and activity feeds use this so the newest message stays visually anchored at the bottom while you append to the end of the list — and as a bonus, the browser keeps the scroll position pinned there. Note that only the visual order flips; screen readers and tab order still follow the DOM.",
-    "supplementalSections": [
-      {
-        "h2": "Flexbox column reversal vs. CSS Grid reversal",
-        "bodyHtml": [
-          "This guide covers <strong>Flexbox column structures</strong> — flipping the stacking order of items inside a <code>flex</code> container with <code>flex-col-reverse</code>, the pattern behind bottom-anchored chat feeds and activity logs.",
-          "Reversing a <strong>CSS Grid</strong> works differently: it uses <code>order-*</code> utilities, <code>grid-flow-*</code>, and <code>dir=\"rtl\"</code> rather than Flexbox classes. If you are trying to reverse grid rows or columns, head to <a href=\"/tailwind-reverse-grid-layout\">Reversing Item Order in Tailwind CSS Grid</a> instead."
-        ]
-      }
-    ]
+    "guide": {
+      "datePublished": "2026-07-07",
+      "dateModified": "2026-09-07",
+      "sections": [
+        {
+          "h2": "flex-col-reverse flips the stack",
+          "body": [
+            "<code>flex flex-col-reverse</code> stacks children bottom to top: the first element in your markup renders at the bottom of the container. It is the go-to for chat threads and activity feeds, where you append the newest message to the end of the list but want it shown at the bottom."
+          ],
+          "code": [
+            { "label": "Tailwind", "lang": "html", "src": "<div class=\"flex flex-col-reverse gap-2 h-96 overflow-y-auto\">\n  <div>Older message</div>\n  <div>Newer message shown at the bottom</div>\n</div>" },
+            { "label": "Vanilla CSS", "lang": "css", "src": ".feed {\n  display: flex;\n  flex-direction: column-reverse;\n}" }
+          ]
+        },
+        {
+          "h2": "Why the scroll stays pinned to the bottom",
+          "body": [
+            "A bonus of <code>flex-col-reverse</code>: the browser anchors the scroll position to the bottom. Append a new message and the view stays pinned to the latest one, with no scroll-to-bottom JavaScript &mdash; exactly the behaviour a chat window wants."
+          ]
+        },
+        {
+          "h2": "Flexbox reversal vs CSS Grid reversal",
+          "body": [
+            "This guide covers <strong>Flexbox column structures</strong> &mdash; flipping the stacking order inside a <code>flex</code> container. Reversing a <strong>CSS Grid</strong> is a different mechanism built on <code>order-*</code> utilities, <code>grid-flow-*</code>, and an <code>rtl</code> direction rather than <code>flex-col-reverse</code>.",
+            "If you are trying to reverse grid rows or columns, head to <a href=\"/tailwind-reverse-grid-layout\">Reversing Item Order in Tailwind CSS Grid</a> instead."
+          ]
+        },
+        {
+          "h2": "Accessibility: only the visuals flip",
+          "body": [
+            "<code>flex-col-reverse</code> changes the visual order, not the DOM order &mdash; screen readers and keyboard tab order still follow the source. Keep your markup in logical reading order and let the utility handle presentation, so assistive tech announces messages sensibly."
+          ]
+        }
+      ],
+      "faq": [
+        { "q": "How do I reverse column order in Tailwind?", "a": "Use flex flex-col-reverse on the container; children stack bottom to top, so the first element in the DOM appears at the bottom." },
+        { "q": "How do I keep a chat scrolled to the newest message?", "a": "flex-col-reverse anchors the scroll to the bottom, so appending a new message keeps the latest one in view without extra JavaScript." },
+        { "q": "Does flex-col-reverse change tab order?", "a": "No. It only flips the visual order; the DOM order, tab order, and screen-reader order stay as written." }
+      ]
+    }
   }
 ]
